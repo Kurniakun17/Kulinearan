@@ -28,11 +28,9 @@ const SearchPages = () => {
 
   return (
     <div className="flex flex-col items-center bg-gray-200 min-h-screen ">
-      <div className="bg-white flex justify-center w-full">
-        <Navbar />
-      </div>
+      <Navbar />
 
-      <main className="w-full mt-28  min-h-screen lg:max-w-[1080px] xl:max-w-[80%] ">
+      <main className="w-full mt-32 min-h-screen lg:max-w-[1080px] xl:max-w-[80%] ">
         <div className="px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-9">
           {searchData.length === 0 ? (
             <h1>Restaurant not found :{`(`}</h1>
@@ -40,6 +38,7 @@ const SearchPages = () => {
             searchData.map((item, index) => (
               <CardRecommendation
                 key={`${item.name} recommendation key 1`}
+                id={item.id}
                 name={item.name}
                 rating={item.rating}
                 price={item.avg_price}

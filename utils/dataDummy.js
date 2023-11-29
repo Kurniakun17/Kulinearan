@@ -7,6 +7,7 @@ const collectionData = [
 
 const restaurantData = [
   {
+    id: 1,
     name: 'JPW Cafe & Resto',
     rating: '4.6',
     avg_price: 35,
@@ -16,15 +17,17 @@ const restaurantData = [
     type: 'Fine Dining',
   },
   {
+    id: 2,
     name: 'Goobne',
     rating: '4.4',
     avg_price: 12,
     distance: '4.8km',
-    location: 'Pantai Indah Kapuk',
+    location: 'Pantai Indah Kapuk, Jakarta',
     tags: ['Korea', 'Makanan Sehat'],
     type: 'Burger',
   },
   {
+    id: 3,
     name: 'Golden Lamian',
     rating: '4.2',
     avg_price: 15,
@@ -34,6 +37,7 @@ const restaurantData = [
     type: 'Fine Dining',
   },
   {
+    id: 4,
     name: 'Afterhour',
     rating: '3.7',
     avg_price: 8,
@@ -43,15 +47,17 @@ const restaurantData = [
     type: 'Burger',
   },
   {
+    id: 5,
     name: 'Ecology Bistro & Lounge',
     rating: '4.1',
     avg_price: 21,
     distance: '4.8km',
-    location: 'Pantai Indah Kapuk',
+    location: 'Pantai Indah Kapuk, Jakarta',
     tags: ['western'],
     type: 'Fine Dining',
   },
   {
+    id: 6,
     name: "Melly's Garden",
     rating: '4.0',
     avg_price: 30,
@@ -61,6 +67,7 @@ const restaurantData = [
     type: 'Fine Dining',
   },
   {
+    id: 7,
     name: 'Sushi Express',
     rating: '4.5',
     avg_price: 25,
@@ -70,6 +77,7 @@ const restaurantData = [
     type: 'Sushi',
   },
   {
+    id: 8,
     name: 'Pizza Haven',
     rating: '4.3',
     avg_price: 18,
@@ -79,6 +87,7 @@ const restaurantData = [
     type: 'Pizza',
   },
   {
+    id: 9,
     name: 'Sushi Palace',
     rating: '4.7',
     avg_price: 30,
@@ -88,6 +97,7 @@ const restaurantData = [
     type: 'Sushi',
   },
   {
+    id: 10,
     name: 'Tokyo Sushi Bar',
     rating: '4.5',
     avg_price: 25,
@@ -97,6 +107,7 @@ const restaurantData = [
     type: 'Sushi',
   },
   {
+    id: 11,
     name: 'Sakura Sushi House',
     rating: '4.8',
     avg_price: 35,
@@ -106,6 +117,7 @@ const restaurantData = [
     type: 'Sushi',
   },
   {
+    id: 12,
     name: 'Burger Tek',
     rating: '4.8',
     avg_price: 10,
@@ -115,6 +127,7 @@ const restaurantData = [
     type: 'Burger',
   },
   {
+    id: 13,
     name: 'Healthy Bowls',
     rating: '4.6',
     avg_price: 20,
@@ -124,6 +137,7 @@ const restaurantData = [
     type: 'Fine Dining',
   },
   {
+    id: 14,
     name: 'Ramen Delight',
     rating: '4.2',
     avg_price: 22,
@@ -133,11 +147,12 @@ const restaurantData = [
     type: 'Fine Dining',
   },
   {
+    id: 15,
     name: 'Veggie Delight',
     rating: '4.7',
     avg_price: 15,
     distance: '2.0km',
-    location: 'Cilandak Town Square',
+    location: 'Cilandak Town Square, Depok',
     tags: ['Vegetarian', 'Healthy'],
     type: 'Fine Dining',
   },

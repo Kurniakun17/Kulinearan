@@ -1,7 +1,9 @@
 import { DollarSign, Star } from 'lucide-react';
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
 export const CardRecommendation = ({
+  id,
   name,
   rating,
   price,
@@ -11,13 +13,17 @@ export const CardRecommendation = ({
   index,
   tabValue,
 }) => {
+  const router = useRouter();
   return (
     <motion.div
+      onClick={() => {
+        router.push(`/detail/${id}`);
+      }}
       key={`${name} recommendation ${tabValue} key`}
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       transition={{ delay: 0.125 * index, duration: 1, type: 'spring' }}
-      className="flex flex-col rounded-xl overflow-hidden shadow-md"
+      className="flex flex-col rounded-xl overflow-hidden shadow-md hover:cursor-pointer"
     >
       <img
         src="https://picsum.photos/300"

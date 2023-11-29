@@ -76,7 +76,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="flex flex-col gap-6 w-full ">
+          <section className="flex mt-8 flex-col gap-6 w-full ">
             <h2 className="font-bold text-3xl h">Rekomendasi Restoran</h2>
             <div className="flex gap-5 w-full flex-col lg:flex-row lg:justify-between items-center">
               {/* Tab Chip */}
@@ -101,14 +101,20 @@ export default function Home() {
                   onClick={() => setOffset((prev) => prev - 6)}
                   className="group bg-red-500 disabled:bg-gray-100 rounded-full h-12 w-12 flex justify-center items-center"
                 >
-                  <ChevronLeft className="text-white group-disabled:text-gray-500 " />
+                  <ChevronLeft
+                    size={32}
+                    className="mr-1  duration-300 text-white group-disabled:text-gray-500 "
+                  />
                 </button>
                 <button
                   disabled={filteredData.length - 6 <= offset}
                   onClick={() => setOffset((prev) => prev + 6)}
                   className="bg-red-500 group disabled:bg-gray-100 rounded-full h-12 w-12 flex justify-center items-center"
                 >
-                  <ChevronRight className="text-white group-disabled:text-gray-500" />
+                  <ChevronRight
+                    size={32}
+                    className="ml-1 duration-300 text-white group-disabled:text-gray-500"
+                  />
                 </button>
               </div>
             </div>
@@ -122,6 +128,7 @@ export default function Home() {
                 return (
                   <CardRecommendation
                     key={`${item.name} recommendation key 1`}
+                    id={item.id}
                     name={item.name}
                     rating={item.rating}
                     price={item.avg_price}
@@ -140,14 +147,20 @@ export default function Home() {
                 onClick={() => setOffset((prev) => prev - 6)}
                 className="group bg-red-500 disabled:bg-gray-100 rounded-full h-12 w-12 flex justify-center items-center"
               >
-                <ChevronLeft className="text-white group-disabled:text-gray-500 " />
+                <ChevronLeft
+                  size={32}
+                  className="mr-1  duration-300 text-white group-disabled:text-gray-500 "
+                />
               </button>
               <button
                 disabled={filteredData.length - 6 <= offset}
                 onClick={() => setOffset((prev) => prev + 6)}
                 className="bg-red-500 group disabled:bg-gray-100 rounded-full h-12 w-12 flex justify-center items-center"
               >
-                <ChevronRight className="text-white group-disabled:text-gray-500" />
+                <ChevronRight
+                  size={32}
+                  className="ml-1  duration-300 text-white group-disabled:text-gray-500"
+                />
               </button>
             </div>
           </section>

@@ -9,9 +9,11 @@ const Navbar = () => {
   const [locationValue, setLocationValue] = useState('Jakarta');
 
   return (
-    <div className="bg-white fixed top-0 flex justify-center w-full">
-      <div className="w-[90%] max-w-[1000px] flex items-center justify-between">
-        <div className="flex items-center gap-6 py-4">
+      <div className="bg-white flex justify-center w-full">
+
+    <div className="z-50 bg-white fixed top-0 py-2 flex justify-center w-full">
+      <div className="w-[90%] lg:max-w-[1080px] xl:max-w-[80%] flex items-center justify-between">
+        <div className="flex items-center gap-6 xl:gap-12 py-4">
           <Link href={'/'} className="text-3xl text-red-500 font-bold">
             Kulinearan
           </Link>
@@ -59,6 +61,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+</div>
   );
 };
 
