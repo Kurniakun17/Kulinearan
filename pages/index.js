@@ -45,7 +45,7 @@ export default function Home() {
   }
 
   return (
-    <div className="relative grid place-items-center">
+    <div className="relative overflow-hidden grid place-items-center">
       <Head>
         <title>Kulinearan</title>
       </Head>
@@ -56,7 +56,7 @@ export default function Home() {
         {/* body */}
         <main className="mt-16 pb-24 lg:max-w-5xl px-8 w-full lg:px-0 flex flex-col items-center gap-12">
           {/* Koleksi Restoran */}
-          <section className="flex flex-col gap-2 w-full">
+          <section className="flex flex-col gap-2 w-full overflow-x-hidden">
             <h2 className="font-bold text-3xl">Koleksi Restoran Di Jakarta</h2>
             <p className="">
               Jelajahi daftar terpilih untuk restoran, kafe dan bar terbaik

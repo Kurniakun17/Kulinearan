@@ -27,7 +27,7 @@ const SearchPages = () => {
   }, [searchParams]);
 
   return (
-    <div className="flex flex-col items-center bg-gray-200 min-h-screen ">
+    <div className="flex flex-col items-center bg-gray-100 min-h-screen ">
       <Navbar />
 
       <main className="w-full mt-32 min-h-screen lg:max-w-[1080px] xl:max-w-[80%] ">
@@ -38,13 +38,7 @@ const SearchPages = () => {
             searchData.map((item, index) => (
               <CardRecommendation
                 key={`${item.name} recommendation key 1`}
-                id={item.id}
-                name={item.name}
-                rating={item.rating}
-                price={item.avg_price}
-                distance={item.distance}
-                location={item.location}
-                tags={item.tags}
+                {...item}
                 index={index + 1}
                 tabValue={'asdasd'}
               />

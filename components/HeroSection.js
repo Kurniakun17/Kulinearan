@@ -8,8 +8,8 @@ const HeroSection = () => {
   const router = useRouter();
 
   return (
-    <section className="w-full lg:max-w-6xl">
-      <div className="relative bg-red-500/90 rounded-b-[48px] flex flex-col gap-12 max-w-[1000px] py-20 px-8 lg:px-28 lg:pr-52">
+    <section className="w-full  lg:max-w-6xl ">
+      <div className="bg-red-500/90 rounded-b-[48px] flex flex-col gap-12 max-w-[1000px] py-20 px-8 lg:px-28 lg:pr-52">
         <motion.h1
           initial={{ x: -52, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -72,21 +72,24 @@ const HeroSection = () => {
             className="px-2 focus:no-underline focus:outline-none w-full text-xl"
           />
         </form>
-        <motion.div
-          initial={{ y: -52, x: 240, opacity: 0 }}
-          animate={{ y: 52, opacity: 1 }}
-          transition={{
-            duration: 2,
-            type: 'spring',
-            stiffness: 800,
-            damping: 200,
-          }}
-        >
-          <img
-            src="https://www.nicepng.com/png/full/964-9642029_veg-biryani-biryani.png"
-            className="absolute hidden lg:block bottom-0 w-[500px] rounded-full  shadow-2xl -right-72"
-          />
-        </motion.div>
+        <div className="hidden lg:block">
+          <motion.div
+            initial={{ y: -52, x: 240, opacity: 0 }}
+            animate={{ y: 52, opacity: 1 }}
+            transition={{
+              duration: 2,
+              type: 'spring',
+              stiffness: 800,
+              damping: 200,
+            }}
+            className=""
+          >
+            <img
+              src="https://www.nicepng.com/png/full/964-9642029_veg-biryani-biryani.png"
+              className="fixed hidden lg:block bottom-0 w-[500px] rounded-full  shadow-2xl -right-72"
+            />
+          </motion.div>
+        </div>
       </div>
     </section>
   );

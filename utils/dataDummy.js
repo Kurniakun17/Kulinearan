@@ -15,6 +15,7 @@ const restaurantData = [
     location: 'Sukmajaya, Depok',
     tags: ['Kopi', 'Indonesia'],
     type: 'Fine Dining',
+    open_time: 'Selasa, 10.00 - 22.00',
   },
   {
     id: 2,
@@ -25,6 +26,7 @@ const restaurantData = [
     location: 'Pantai Indah Kapuk, Jakarta',
     tags: ['Korea', 'Makanan Sehat'],
     type: 'Burger',
+    open_time: 'Rabu, 08.00 - 21.00',
   },
   {
     id: 3,
@@ -35,6 +37,7 @@ const restaurantData = [
     location: 'Senayan City, Senayan, Jakarta',
     tags: ['Bakmi', 'Chinese', 'Cepat Saji'],
     type: 'Fine Dining',
+    open_time: 'Senin, 08.00 - 22.00',
   },
   {
     id: 4,
@@ -45,6 +48,7 @@ const restaurantData = [
     location: 'Sarinah Building, Thamrin, Jakarta',
     tags: ['GrillHouse', 'Itali'],
     type: 'Burger',
+    open_time: 'Kamis, 10.00 - 22.00',
   },
   {
     id: 5,
@@ -55,6 +59,7 @@ const restaurantData = [
     location: 'Pantai Indah Kapuk, Jakarta',
     tags: ['western'],
     type: 'Fine Dining',
+    open_time: 'Jumat, 10.00 - 23.59',
   },
   {
     id: 6,
@@ -65,6 +70,7 @@ const restaurantData = [
     location: 'Menteng, Jakarta',
     tags: ['Jawa', 'Indonesia', 'Western'],
     type: 'Fine Dining',
+    open_time: 'Minggu, 08.00 - 21.00',
   },
   {
     id: 7,
@@ -75,6 +81,7 @@ const restaurantData = [
     location: 'Gandaria City, Kebayoran Lama, Jakarta',
     tags: ['Sushi', 'Japanese'],
     type: 'Sushi',
+    open_time: 'Selasa, 09.00 - 22.30',
   },
   {
     id: 8,
@@ -85,6 +92,7 @@ const restaurantData = [
     location: 'Kemang, Jakarta Selatan',
     tags: ['Pizza', 'Italian'],
     type: 'Pizza',
+    open_time: 'Rabu, 08.00 - 21.30',
   },
   {
     id: 9,
@@ -95,6 +103,7 @@ const restaurantData = [
     location: 'Plaza Senayan, Jakarta',
     tags: ['Sushi', 'Japanese'],
     type: 'Sushi',
+    open_time: 'Minggu, 09.00 - 23.00',
   },
   {
     id: 10,
@@ -105,6 +114,7 @@ const restaurantData = [
     location: 'Pacific Place, Jakarta',
     tags: ['Sushi', 'Japanese'],
     type: 'Sushi',
+    open_time: 'Senin, 08.00 - 21.30',
   },
   {
     id: 11,
@@ -115,6 +125,7 @@ const restaurantData = [
     location: 'Kemang, Jakarta Selatan',
     tags: ['Sushi', 'Japanese'],
     type: 'Sushi',
+    open_time: 'Kamis, 11.00 - 23.59',
   },
   {
     id: 12,
@@ -135,6 +146,7 @@ const restaurantData = [
     location: 'Kuningan City, Jakarta',
     tags: ['Salad', 'Healthy'],
     type: 'Fine Dining',
+    open_time: 'Jumat, 09.00 - 22.00',
   },
   {
     id: 14,
@@ -145,6 +157,7 @@ const restaurantData = [
     location: 'Plaza Indonesia, Jakarta',
     tags: ['Ramen', 'Japanese'],
     type: 'Fine Dining',
+    open_time: 'Sabtu, 10.00 - 22.00',
   },
   {
     id: 15,
@@ -155,6 +168,7 @@ const restaurantData = [
     location: 'Cilandak Town Square, Depok',
     tags: ['Vegetarian', 'Healthy'],
     type: 'Fine Dining',
+    open_time: 'Selasa, 09.00 - 22.00',
   },
 ];
 
