@@ -20,10 +20,10 @@ export const CardRecommendation = ({
       className="flex flex-col rounded-xl overflow-hidden shadow-md"
     >
       <img
-        src="https://picsum.photos/200"
-        className="aspect-video object-cover"
+        src="https://picsum.photos/300"
+        className="aspect-[16/9] object-cover"
       />
-      <div className="py-3 px-4 flex flex-col gap-3">
+      <div className="py-3 px-4 flex flex-col gap-3 bg-white">
         <h4 className="font-semibold text-xl">{name}</h4>
         <div className="flex gap-2">
           <div className="bg-orange-300/30 w-fit p-1 py-1.5 px-1.5 rounded-lg flex items-center gap-1">

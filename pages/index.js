@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 
 import { Navbar } from '@/components/Navbar';
-import { ChevronLeft, ChevronRight, MapPin, Search } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { CardCollection } from '@/components/CardCollection';
 import { CardRecommendation } from '@/components/CardRecommendation';
 import { TabChip } from '@/components/TabChip';
@@ -15,9 +15,14 @@ export default function Home() {
   const [tabValue, setTabValue] = useState('Semua');
   const [offset, setOffset] = useState(0);
   const [filteredData, setFilteredData] = useState(restaurantData);
-  const { data, isLoading } = useQuery({
+  const { isLoading } = useQuery({
     queryKey: ['mainData'],
-    queryFn: async () => axios.get('https://pokeapi.co/api/v2/pokemon/ditto'),
+    queryFn: async () =>
+      await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve();
+        }, 1000);
+      }),
   });
 
   useEffect(() => {
@@ -58,7 +63,7 @@ export default function Home() {
               Jakarta <br />
               berdasarkan tren
             </p>
-            <div className="lg:flex grid grid-cols-2 mt-2 gap-4 overflow-x-auto">
+            <div className="lg:flex grid grid-cols-2 mt-2 gap-4 w-full overflow-x-auto">
               {collectionData.map((item, index) => {
                 return (
                   <CardCollection
@@ -73,7 +78,7 @@ export default function Home() {
 
           <section className="flex flex-col gap-6 w-full ">
             <h2 className="font-bold text-3xl h">Rekomendasi Restoran</h2>
-            <div className="flex gap-5 flex-col lg:flex-row lg:justify-between items-center">
+            <div className="flex gap-5 w-full flex-col lg:flex-row lg:justify-between items-center">
               {/* Tab Chip */}
               <div className="flex gap-4">
                 {['Semua', 'Pizza', 'Sushi', 'Burger', 'Fine Dining'].map(
@@ -90,18 +95,18 @@ export default function Home() {
                   )
                 )}
               </div>
-              <div className="flex gap-2 h-fit">
+              <div className="hidden lg:flex gap-2 h-fit">
                 <button
                   disabled={offset === 0}
                   onClick={() => setOffset((prev) => prev - 6)}
-                  className="group bg-red-500 disabled:bg-gray-100 rounded-full h-8 w-8 flex justify-center items-center"
+                  className="group bg-red-500 disabled:bg-gray-100 rounded-full h-12 w-12 flex justify-center items-center"
                 >
                   <ChevronLeft className="text-white group-disabled:text-gray-500 " />
                 </button>
                 <button
                   disabled={filteredData.length - 6 <= offset}
                   onClick={() => setOffset((prev) => prev + 6)}
-                  className="bg-red-500 group disabled:bg-gray-100 rounded-full h-8 w-8 flex justify-center items-center"
+                  className="bg-red-500 group disabled:bg-gray-100 rounded-full h-12 w-12 flex justify-center items-center"
                 >
                   <ChevronRight className="text-white group-disabled:text-gray-500" />
                 </button>
@@ -112,6 +117,7 @@ export default function Home() {
                 if (filteredData.length <= index + offset) {
                   return null;
                 }
+
                 const item = filteredData[index + offset];
                 return (
                   <CardRecommendation
@@ -127,6 +133,22 @@ export default function Home() {
                   />
                 );
               })}
+            </div>
+            <div className="lg:hidden flex w-full justify-center gap-2 h-fit">
+              <button
+                disabled={offset === 0}
+                onClick={() => setOffset((prev) => prev - 6)}
+                className="group bg-red-500 disabled:bg-gray-100 rounded-full h-12 w-12 flex justify-center items-center"
+              >
+                <ChevronLeft className="text-white group-disabled:text-gray-500 " />
+              </button>
+              <button
+                disabled={filteredData.length - 6 <= offset}
+                onClick={() => setOffset((prev) => prev + 6)}
+                className="bg-red-500 group disabled:bg-gray-100 rounded-full h-12 w-12 flex justify-center items-center"
+              >
+                <ChevronRight className="text-white group-disabled:text-gray-500" />
+              </button>
             </div>
           </section>
         </main>

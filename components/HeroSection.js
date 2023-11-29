@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 const HeroSection = () => {
   const [searchValue, setSearchValue] = useState('');
+  const [locationValue, setLocationValue] = useState('Jakarta');
   const router = useRouter();
 
   return (
@@ -38,15 +39,25 @@ const HeroSection = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            router.push(`/search/${searchValue}`);
+
+            router.push(
+              `/search?data=${searchValue}&location=${locationValue}`
+            );
           }}
           className="flex items-center py-6 px-8 rounded-[20px] w-full bg-white text-zinc-500"
         >
           <div className="flex items-center">
             <MapPin size={24} />
-            <select className="w-20 text-xl">
+            <select
+              value={locationValue}
+              onChange={(e) => setLocationValue(e.target.value)}
+              className="w-20 text-xl"
+            >
               <option value={'Jakarta'} className="text-center">
                 Jakarta
+              </option>
+              <option value={'Depok'} className="text-center">
+                Depok
               </option>
             </select>
           </div>
@@ -61,10 +72,21 @@ const HeroSection = () => {
             className="px-2 focus:no-underline focus:outline-none w-full text-xl"
           />
         </form>
-        <img
-          src="https://www.nicepng.com/png/full/964-9642029_veg-biryani-biryani.png"
-          className="absolute hidden lg:block bottom-0 w-[500px] rounded-full  shadow-2xl -right-72"
-        />
+        <motion.div
+          initial={{ y: -52, x: 240, opacity: 0 }}
+          animate={{ y: 52, opacity: 1 }}
+          transition={{
+            duration: 2,
+            type: 'spring',
+            stiffness: 800,
+            damping: 200,
+          }}
+        >
+          <img
+            src="https://www.nicepng.com/png/full/964-9642029_veg-biryani-biryani.png"
+            className="absolute hidden lg:block bottom-0 w-[500px] rounded-full  shadow-2xl -right-72"
+          />
+        </motion.div>
       </div>
     </section>
   );

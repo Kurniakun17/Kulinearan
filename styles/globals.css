@@ -15,6 +15,10 @@ h6 {
   @apply text-zinc-600;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 select {
   appearance: none;
   /* safari */
