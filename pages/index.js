@@ -73,7 +73,7 @@ export default function Home() {
 
           <section className="flex flex-col gap-6 w-full ">
             <h2 className="font-bold text-3xl h">Rekomendasi Restoran</h2>
-            <div className="flex gap-5 flex-col lg:justify-between items-center">
+            <div className="flex gap-5 flex-col lg:flex-row lg:justify-between items-center">
               {/* Tab Chip */}
               <div className="flex gap-4">
                 {['Semua', 'Pizza', 'Sushi', 'Burger', 'Fine Dining'].map(
