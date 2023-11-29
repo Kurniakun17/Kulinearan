@@ -13,8 +13,13 @@ export const CardRecommendation = ({
   return (
     <motion.div
       key={`${name} recommendation key`}
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={{
+        hidden: { scale: 0 },
+        visible: { scale: 1 },
+      }}
       transition={{ delay: 0.125 * index, duration: 1, type: 'spring' }}
       className="flex flex-col rounded-xl overflow-hidden shadow-md"
     >
@@ -31,7 +36,7 @@ export const CardRecommendation = ({
             </div>
             <p className="text-sm text-orange-400/70 font-bold">{rating}</p>
           </div>
-          <div className="bg-green-300/30 w-fit p-1 px-1.5 rounded-lg flex items-center ">
+          <div className="bg-green-300/30 w-fit p-1 px-1.5 rounded-lg flex items-center justify-center ">
             <DollarSign size={16} className="text-green-500" />
             <p className="text-green-500 text-sm font-semibold">
               {price} in average
@@ -47,10 +52,14 @@ export const CardRecommendation = ({
           <div className="flex items-center gap-1">
             {tags.map((item, index) => {
               if (index === 0) {
-                return <p key={`tag key ${item}`} className="text-zinc-400">{item}</p>;
+                return (
+                  <p key={`tag key ${item}`} className="text-zinc-400">
+                    {item}
+                  </p>
+                );
               }
               return (
-                <div key={`tag key ${item}`}>
+                <div key={`tag key ${item}`} className="flex gap-1 items-center">
                   <div className="h-1 w-1 bg-zinc-400 rounded-full"></div>
                   <p className="text-zinc-400">{item}</p>
                 </div>

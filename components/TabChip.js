@@ -3,12 +3,13 @@ import React from 'react';
 export const TabChip = ({ onClickHandler, name, tabValue }) => {
   return (
     <button
-    key={`${name} chip`}
       onClick={() => onClickHandler(name)}
-      className={`font-bold text-sm duration-300 px-6 py-3 rounded-2xl ${tabValueColor({
-        key: name,
-        value: tabValue,
-      })}`}
+      className={`font-bold text-sm duration-300 px-6 py-3 rounded-2xl ${tabValueColor(
+        {
+          key: name,
+          value: tabValue,
+        }
+      )}`}
     >
       {name}
     </button>
