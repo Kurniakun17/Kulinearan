@@ -8,7 +8,7 @@ export const CardCollection = ({ name, index }) => {
       initial={{ x: -120, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 1.5, delay: 0.125 * index }}
-      className={`flex flex-col overflow-hidden justify-end bg-gradient-to-br from-purple-600 to-blue-600 aspect-[12/16] h-72 rounded-2xl collection-${index}`}
+      className={`flex flex-col overflow-hidden justify-end bg-gradient-to-br from-purple-600 to-blue-600 lg:aspect-[12/16] lg:h-72 h-72 rounded-2xl collection-${index}`}
     >
       <div className="flex flex-col gap-2 w-full pt-12 pb-6 px-4 bg-gradient-to-b from-white/0 to-black text-white">
         <h3 className="text-xl text-white">{name}</h3>

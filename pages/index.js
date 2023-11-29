@@ -17,8 +17,7 @@ export default function Home() {
   const [filteredData, setFilteredData] = useState(restaurantData);
   const { data, isLoading } = useQuery({
     queryKey: ['mainData'],
-    queryFn: async () =>
-      axios.get('https://pokeapi.co/api/v2/pokemon/ditto'),
+    queryFn: async () => axios.get('https://pokeapi.co/api/v2/pokemon/ditto'),
   });
 
   useEffect(() => {
@@ -46,89 +45,91 @@ export default function Home() {
         <title>Kulinearan</title>
       </Head>
 
-      <HeroSection />
+      <div className="w-full lg:max-w-[1080px] xl:max-w-[80%] flex flex-col items-center">
+        <HeroSection />
 
-      {/* body */}
-      <main className="mt-16 pb-24 lg:max-w-5xl px-8 lg:px-0 flex flex-col items-center gap-12">
-        {/* Koleksi Restoran */}
-        <section className="flex flex-col gap-2">
-          <h2 className="font-bold text-3xl h">Koleksi Restoran Di Jakarta</h2>
-          <p className="">
-            Jelajahi daftar terpilih untuk restoran, kafe dan bar terbaik
-            Jakarta <br />
-            berdasarkan tren
-          </p>
-          <div className="flex mt-2 gap-4 overflow-x-auto">
-            {collectionData.map((item, index) => {
-              return (
-                <CardCollection
-                  key={`card collection - ${item.name}`}
-                  name={item.name}
-                  index={index + 1}
-                />
-              );
-            })}
-          </div>
-        </section>
-
-        <section className="flex flex-col gap-6 w-full ">
-          <h2 className="font-bold text-3xl h">Rekomendasi Restoran</h2>
-          <div className="flex justify-between">
-            {/* Tab Chip */}
-            <div className="flex gap-4">
-              {['Semua', 'Pizza', 'Sushi', 'Burger', 'Fine Dining'].map(
-                (name) => (
-                  <TabChip
-                    key={`${name} chip`}
-                    onClickHandler={(name) => {
-                      setTabValue(name);
-                      setOffset(0);
-                    }}
-                    name={name}
-                    tabValue={tabValue}
+        {/* body */}
+        <main className="mt-16 pb-24 lg:max-w-5xl px-8 w-full lg:px-0 flex flex-col items-center gap-12">
+          {/* Koleksi Restoran */}
+          <section className="flex flex-col gap-2 w-full">
+            <h2 className="font-bold text-3xl">Koleksi Restoran Di Jakarta</h2>
+            <p className="">
+              Jelajahi daftar terpilih untuk restoran, kafe dan bar terbaik
+              Jakarta <br />
+              berdasarkan tren
+            </p>
+            <div className="lg:flex grid grid-cols-2 mt-2 gap-4 overflow-x-auto">
+              {collectionData.map((item, index) => {
+                return (
+                  <CardCollection
+                    key={`card collection - ${item.name}`}
+                    name={item.name}
+                    index={index + 1}
                   />
-                )
-              )}
+                );
+              })}
             </div>
-            <div className="flex gap-2">
-              <button
-                disabled={offset === 0}
-                onClick={() => setOffset((prev) => prev - 6)}
-                className="group bg-red-500 disabled:bg-gray-300 rounded-full h-8 w-8 flex justify-center items-center"
-              >
-                <ChevronLeft className="text-white group-disabled:text-gray-500 " />
-              </button>
-              <button
-                disabled={filteredData.length - 6 <= offset}
-                onClick={() => setOffset((prev) => prev + 6)}
-                className="bg-red-500 group disabled:bg-gray-300 rounded-full h-8 w-8 flex justify-center items-center"
-              >
-                <ChevronRight className="text-white group-disabled:text-gray-500" />
-              </button>
+          </section>
+
+          <section className="flex flex-col gap-6 w-full ">
+            <h2 className="font-bold text-3xl h">Rekomendasi Restoran</h2>
+            <div className="flex gap-5 flex-col lg:justify-between items-center">
+              {/* Tab Chip */}
+              <div className="flex gap-4">
+                {['Semua', 'Pizza', 'Sushi', 'Burger', 'Fine Dining'].map(
+                  (name) => (
+                    <TabChip
+                      key={`${name} chip`}
+                      onClickHandler={(name) => {
+                        setTabValue(name);
+                        setOffset(0);
+                      }}
+                      name={name}
+                      tabValue={tabValue}
+                    />
+                  )
+                )}
+              </div>
+              <div className="flex gap-2 h-fit">
+                <button
+                  disabled={offset === 0}
+                  onClick={() => setOffset((prev) => prev - 6)}
+                  className="group bg-red-500 disabled:bg-gray-100 rounded-full h-8 w-8 flex justify-center items-center"
+                >
+                  <ChevronLeft className="text-white group-disabled:text-gray-500 " />
+                </button>
+                <button
+                  disabled={filteredData.length - 6 <= offset}
+                  onClick={() => setOffset((prev) => prev + 6)}
+                  className="bg-red-500 group disabled:bg-gray-100 rounded-full h-8 w-8 flex justify-center items-center"
+                >
+                  <ChevronRight className="text-white group-disabled:text-gray-500" />
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="grid gap-3 gap-y-5 grid-cols-3">
-            {Array.from({ length: 6 }).map((_, index) => {
-              if (filteredData.length <= index + offset) {
-                return null;
-              }
-              const item = filteredData[index + offset];
-              return (
-                <CardRecommendation
-                  key={`${item.name} recommendation key 1`}
-                  name={item.name}
-                  rating={item.rating}
-                  price={item.avg_price}
-                  distance={item.distance}
-                  location={item.location}
-                  tags={item.tags}
-                  index={index + 1}
-                />
-              );
-            })}
-          </div>
-        </section>
-      </main>
+            <div className="grid gap-3 gap-y-5 grid-cols-2 lg:grid-cols-3">
+              {Array.from({ length: 6 }).map((_, index) => {
+                if (filteredData.length <= index + offset) {
+                  return null;
+                }
+                const item = filteredData[index + offset];
+                return (
+                  <CardRecommendation
+                    key={`${item.name} recommendation key 1`}
+                    name={item.name}
+                    rating={item.rating}
+                    price={item.avg_price}
+                    distance={item.distance}
+                    location={item.location}
+                    tags={item.tags}
+                    index={index + 1}
+                  />
+                );
+              })}
+            </div>
+          </section>
+        </main>
+      </div>
     </div>
   );
 }
