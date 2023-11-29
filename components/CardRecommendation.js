@@ -9,17 +9,13 @@ export const CardRecommendation = ({
   location,
   tags,
   index,
+  tabValue,
 }) => {
   return (
     <motion.div
-      key={`${name} recommendation key`}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      variants={{
-        hidden: { scale: 0 },
-        visible: { scale: 1 },
-      }}
+      key={`${name} recommendation ${tabValue} key`}
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
       transition={{ delay: 0.125 * index, duration: 1, type: 'spring' }}
       className="flex flex-col rounded-xl overflow-hidden shadow-md"
     >
@@ -59,7 +55,10 @@ export const CardRecommendation = ({
                 );
               }
               return (
-                <div key={`tag key ${item}`} className="flex gap-1 items-center">
+                <div
+                  key={`tag key ${item}`}
+                  className="flex gap-1 items-center"
+                >
                   <div className="h-1 w-1 bg-zinc-400 rounded-full"></div>
                   <p className="text-zinc-400">{item}</p>
                 </div>

@@ -123,6 +123,7 @@ export default function Home() {
                     location={item.location}
                     tags={item.tags}
                     index={index + 1}
+                    tabValue={tabValue}
                   />
                 );
               })}
