@@ -1,6 +1,15 @@
 import Navbar from '@/components/Navbar';
 import { restaurantData } from '@/utils/dataDummy';
-import { Star, DollarSign, Clock } from 'lucide-react';
+import {
+  Star,
+  DollarSign,
+  Clock,
+  Milestone,
+  MapPin,
+  Copy,
+  Phone,
+  Globe2,
+} from 'lucide-react';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import StarRatings from 'react-star-ratings';
@@ -20,7 +29,7 @@ const DetailPage = () => {
     <div className="flex flex-col items-center bg-gray-100 min-h-screen ">
       <Navbar />
 
-      <main className="my-36 w-full lg:max-w-[1080px] px-12 xl:max-w-[80%] flex flex-col gap-4">
+      <main className="my-36 w-full lg:max-w-[1080px] px-6 lg:px-12 xl:max-w-[80%] flex flex-col gap-4">
         <h2 className="text-4xl font-bold">{data.name}</h2>
         {/* ratings and price */}
         <div className="flex flex-col lg:flex-row gap-2">
@@ -77,29 +86,72 @@ const DetailPage = () => {
             })}
           </div>
         </div>
-        <div className="grid gap-y-4">
+        <div className="grid lg:grid-cols-3 gap-4">
           <img
             src="https://picsum.photos/1080"
-            className="object-cover w-full bg-gray-400 aspect-video rounded-2xl"
+            className="object-cover w-full bg-gray-400 lg:col-span-2 aspect-video rounded-2xl"
           ></img>
           <img
             src="https://picsum.photos/1080"
-            className="object-cover w-full bg-gray-400 aspect-video rounded-2xl"
+            className="object-cover w-full bg-gray-400 aspect-video  rounded-2xl"
           ></img>
+          {/* <div className="w-full h-full col-start-3 col-end-4 bg-gray-400 aspect-video rounded-2xl"></div> */}
         </div>
-        <div className="bg-white p-5 flex flex-col gap-4 rounded-xl">
-          <h2 className="font-semibold text-xl">Penilaian dan Ulasan</h2>
-          <div className="w-full text-center flex flex-col gap-2">
-            <h3 className="font-bold text-4xl  text-orange-300">
-              {data.rating}
-            </h3>
-            <StarRatings
-              starDimension="28px"
-              rating={parseFloat(data.rating)}
-              starRatedColor="rgb(253 186 116 / 1)"
-            />
-            <p>{`(2.412 ulasan)`}</p>
-          </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <section className="bg-white h-fit p-5 flex flex-col gap-4 rounded-xl">
+            <h2 className="font-semibold text-xl">Penilaian dan Ulasan</h2>
+            <div className="w-full text-center flex flex-col gap-2">
+              <h3 className="font-bold text-4xl  text-orange-300">
+                {data.rating}
+              </h3>
+              <StarRatings
+                starDimension="28px"
+                rating={parseFloat(data.rating)}
+                starRatedColor="rgb(253 186 116 / 1)"
+              />
+              <p>{`(2.412 ulasan)`}</p>
+            </div>
+          </section>
+          <section className="bg-white p-5 flex flex-col gap-4 rounded-xl">
+            <h2 className="font-semibold text-xl">Lokasi Restoran</h2>
+            <div className="w-full flex flex-col gap-4">
+              <img
+                src="https://www.wired.com/wp-content/uploads/2016/11/GoogleMapTA.jpg"
+                className="aspect-video rounded-xl object-cover"
+              />
+              <p className="font-semibold flex items-center gap-1">
+                <span>
+                  <MapPin className="w-5" />
+                </span>{' '}
+                {data.location}
+              </p>
+              <div className="flex gap-2">
+                <button className="w-fit px-3 font-bold text-red-500 hover:text-white hover:bg-red-500 duration-300 flex gap-2 py-1.5 border-2 border-red-500 rounded-lg">
+                  <Milestone className="w-5" />
+                  Direction
+                </button>
+                <button className="w-fit px-3 font-bold flex items-center gap-2 py-1.5 border-2 border-zinc-500 rounded-lg">
+                  <Copy className="w-5" />
+                  Salin
+                </button>
+              </div>
+              <div className="w-full h-[0.5px] my-2 bg-zinc-500/40 rounded-md"></div>
+              <h2 className="font-semibold text-xl">Kontak Restoran</h2>
+              <p className="flex gap-2 items-center">
+                <span>
+                  <Phone className="w-5" />
+                </span>
+                +62895342958390
+              </p>
+              <p className="flex gap-2 items-center">
+                <span>
+                  <Globe2 className="w-5" />
+                </span>
+                www.google.com
+              </p>
+            </div>
+          </section>
         </div>
       </main>
     </div>
