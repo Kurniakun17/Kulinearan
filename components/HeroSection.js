@@ -8,8 +8,8 @@ const HeroSection = () => {
   const router = useRouter();
 
   return (
-    <section className="w-full  lg:max-w-6xl ">
-      <div className="bg-red-500/90 rounded-b-[48px] flex flex-col gap-12 max-w-[1000px] py-20 px-8 lg:px-28 lg:pr-52">
+    <section className="w-full lg:max-w-6xl ">
+      <div className="w-full bg-red-500/90 rounded-b-[48px] flex flex-col gap-12 max-w-[1000px] py-20 px-8 lg:px-28 lg:pr-52">
         <motion.h1
           initial={{ x: -52, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -32,7 +32,7 @@ const HeroSection = () => {
             stiffness: 800,
             damping: 200,
           }}
-          className="text-white text-5xl leading-[64px] font-semibold"
+          className="text-white text-5xl sm:leading-[64px] font-semibold"
         >
           Temukan makanan & <br /> minuman terbaik di <br /> kotamu
         </motion.h1>
@@ -72,6 +72,7 @@ const HeroSection = () => {
             className="px-2 focus:no-underline focus:outline-none w-full text-xl"
           />
         </form>
+        
         <div className="hidden lg:block">
           <motion.div
             initial={{ y: -52, x: 240, opacity: 0 }}

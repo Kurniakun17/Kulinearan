@@ -45,7 +45,7 @@ export default function Home() {
   }
 
   return (
-    <div className="relative overflow-hidden grid place-items-center">
+    <div className="relative lg:overflow-hidden grid place-items-center">
       <Head>
         <title>Kulinearan</title>
       </Head>
