@@ -51,7 +51,7 @@ const Navbar = () => {
             />
           </form>
         </div>
-        <div className="flex gap-8 items-center">
+        <div className="hidden lg:flex gap-8 items-center">
           <button className="text-red-500 font-bold text-xl">Login</button>
           <button className="text-white font-bold text-xl py-2 px-4 rounded-2xl bg-red-500">
             Sign Up

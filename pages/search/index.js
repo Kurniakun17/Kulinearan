@@ -25,7 +25,6 @@ const SearchPages = () => {
       return result;
     });
   }, [searchParams]);
-  // console.log(searchData);
 
   return (
     <div className="flex flex-col items-center bg-gray-200 min-h-screen ">
@@ -34,7 +33,7 @@ const SearchPages = () => {
       </div>
 
       <main className="w-full mt-28  min-h-screen lg:max-w-[1080px] xl:max-w-[80%] ">
-        <div className="grid grid-cols-3 gap-9">
+        <div className="px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-9">
           {searchData.length === 0 ? (
             <h1>Restaurant not found :{`(`}</h1>
           ) : (
