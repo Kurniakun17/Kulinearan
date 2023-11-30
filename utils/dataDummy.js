@@ -57,7 +57,7 @@ const restaurantData = [
     avg_price: 21,
     distance: '4.8km',
     location: 'Pantai Indah Kapuk, Jakarta',
-    tags: ['western'],
+    tags: ['Western'],
     type: 'Fine Dining',
     open_time: 'Jumat, 10.00 - 23.59',
   },
@@ -172,4 +172,35 @@ const restaurantData = [
   },
 ];
 
-export { restaurantData, collectionData };
+const reviewsData = [
+  {
+    imgUrl: 'url_gambar_restoran1',
+    name: 'Cookie',
+    occupation: 'Kritikus Kuliner',
+    totalReviews: 128,
+    followers: 543,
+    title: 'Pengalaman Kuliner Menggoda',
+    body: 'Restoran ini tidak hanya menyajikan hidangan lezat tetapi juga memberikan pengalaman kuliner yang tak terlupakan. Dengan pelayanan yang ramah dan atmosfer yang menyenangkan, Santap Lezat pantas menjadi pilihan utama bagi para pecinta makanan.',
+  },
+  {
+    imgUrl: 'url_gambar_restoran2',
+    name: 'Hyein',
+    occupation: 'Food Blogger',
+    totalReviews: 95,
+    followers: 789,
+    title: 'Kelezatan yang Terjaga',
+    body: 'Rasa Sejati selalu berhasil menjaga kualitas makanan mereka. Setiap kunjungan saya dijamin dengan cita rasa yang konsisten dan bahan-bahan berkualitas tinggi. Dari hidangan utama hingga hidangan penutup, semuanya memanjakan lidah.',
+  },
+  {
+    imgUrl: 'url_gambar_restoran3',
+    name: 'Ditto',
+    occupation: 'Ahli Kuliner Lokal',
+    totalReviews: 72,
+    followers: 432,
+    title: 'Sentuhan Khas Daerah',
+    body: 'Berkah Rasa berhasil menyajikan hidangan khas daerah dengan sentuhan modern yang mengagumkan. Setiap suapannya membawa nostalgia kampung halaman, menjadikan pengalaman makan di sini begitu istimewa.',
+  },
+];
+
+export { restaurantData, collectionData, reviewsData
+};

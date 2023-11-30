@@ -16,15 +16,30 @@ const SearchPages = () => {
 
     setSearchData(() => {
       const tempData = restaurantData.filter((item) =>
-        item.name.toLowerCase().includes(data)
+        item.name.toLowerCase().includes(data.toLowerCase())
       );
       const result = tempData.filter((item) =>
         item.location.toLowerCase().includes(location.toLowerCase())
       );
       console.log(result);
+      
       return result;
     });
   }, [searchParams]);
+
+  if (searchData.length === 0) {
+    return (
+      <div className="min-h-screen bg-gray-100 grid place-items-center">
+        <Navbar />
+        <div className="bg-white p-6 px-8 rounded-3xl">
+          <h2 className="font-medium text-2xl">
+            Result for {searchParams.get('data')} on{' '}
+            {searchParams.get('location')} not found :{`(`}
+          </h2>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center bg-gray-100 min-h-screen ">

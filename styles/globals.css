@@ -14,10 +14,6 @@ h5,
 h6 {
   @apply text-zinc-600;
 }
-/* 
-body {
-  overflow-x: hidden !important;
-} */
 
 select {
   appearance: none;

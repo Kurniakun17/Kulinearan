@@ -9,8 +9,8 @@ const Navbar = () => {
   const [locationValue, setLocationValue] = useState('Jakarta');
 
   return (
-    <div className="bg-white flex justify-center w-full">
-      <div className="z-50 bg-white fixed top-0 h-28 py-2 flex items-center justify-center w-full">
+    <div className="bg-white flex z-50 fixed top-0  justify-center w-full">
+      <div className="bg-white h-28 py-2 flex items-center justify-center w-full">
         <div className="w-full lg:max-w-[1080px] xl:max-w-[80%] flex items-center justify-center lg:justify-between">
           <div className="flex flex-col lg:flex-row items-center gap-2 lg:gap-6 xl:gap-12 py-4">
             <Link
@@ -44,20 +44,20 @@ const Navbar = () => {
                 </select>
               </div>
               <div className="h-5 bg-zinc-400 w-[1px] mx-4"></div>
-              <Search className=" mr-1" size={32} />
+              <Search className="w-4 lg:w-8 " />
               <input
                 value={searchValue}
                 onChange={(e) => {
                   setSearchValue(e.target.value);
                 }}
                 placeholder="Cari berdasarkan menu atau restoran"
-                className="px-2 bg-gray-100 focus:no-underline focus:outline-none w-full text-sm lg:text-xl"
+                className="px-2 bg-gray-100 focus:no-underline focus:outline-none text-sm lg:text-lg w-72 lg:w-96"
               />
             </form>
           </div>
           <div className="hidden lg:flex gap-8 items-center">
             <button className="text-red-500 font-bold text-xl">Login</button>
-            <button className="text-white font-bold text-xl py-2 px-4 rounded-2xl bg-red-500">
+            <button className="text-white hover:bg-white border border-white hover:border-red-500 hover:text-red-500 font-bold text-xl py-2 px-4 rounded-2xl bg-red-500">
               Sign Up
             </button>
           </div>

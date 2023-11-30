@@ -1,7 +1,6 @@
 import Navbar from '@/components/Navbar';
-import { restaurantData } from '@/utils/dataDummy';
+import { restaurantData, reviewsData } from '@/utils/dataDummy';
 import {
-  Star,
   DollarSign,
   Clock,
   Milestone,
@@ -13,6 +12,8 @@ import {
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import StarRatings from 'react-star-ratings';
+import { motion } from 'framer-motion';
+import { Review } from '@/components/Review';
 
 const DetailPage = () => {
   const [data, setData] = useState(null);
@@ -21,15 +22,20 @@ const DetailPage = () => {
   useEffect(() => {
     setData(restaurantData.filter((item) => item.id === parseInt(id))[0]);
   }, [id]);
-  console.log(data);
+
   if (!data) {
-    return <div className="h-4 w-4 bg-red-500 animate-spin"></div>;
+    return (
+      <div className="grid place-items-center min-h-screen">
+        <div className="h-4 w-4 bg-red-500 animate-spin"></div>;
+      </div>
+    );
   }
+
   return (
     <div className="flex flex-col items-center bg-gray-100 min-h-screen ">
       <Navbar />
 
-      <main className="my-36 w-full lg:max-w-[1080px] px-6 lg:px-12 xl:max-w-[80%] flex flex-col gap-4">
+      <main className="my-36 w-full lg:max-w-[1080px] px-6 sm:px-16  xl:max-w-[80%] flex flex-col gap-4">
         <h2 className="text-4xl font-bold">{data.name}</h2>
         {/* ratings and price */}
         <div className="flex flex-col lg:flex-row gap-2">
@@ -37,7 +43,7 @@ const DetailPage = () => {
             <div className={`pb-1`}>
               <StarRatings
                 starDimension="24px"
-                starRatedColor="rgb(234 179 8 / 0.8)"
+                starRatedColor="rgb(250 204 21 / 1)"
                 starSpacing="0px"
                 rating={parseFloat(data.rating)}
               />
@@ -86,35 +92,55 @@ const DetailPage = () => {
             })}
           </div>
         </div>
-        <div className="grid lg:grid-cols-3 gap-4">
-          <img
+        <div className="grid lg:grid-cols-3 lg:grid-rows-2 gap-4">
+          <motion.img
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             src="https://picsum.photos/1080"
-            className="object-cover w-full bg-gray-400 lg:col-span-2 aspect-video rounded-2xl"
-          ></img>
-          <img
+            className="object-cover w-full duration-300 bg-gray-400 lg:col-span-2 lg:row-span-2 aspect-video rounded-2xl"
+          />
+          <motion.img
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             src="https://picsum.photos/1080"
-            className="object-cover w-full bg-gray-400 aspect-video  rounded-2xl"
-          ></img>
-          {/* <div className="w-full h-full col-start-3 col-end-4 bg-gray-400 aspect-video rounded-2xl"></div> */}
+            className="object-cover w-full duration-300 bg-gray-400 aspect-video rounded-2xl"
+          />
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="font-bold text-sm w-full duration-300 h-full bg-white aspect-video rounded-2xl grid place-items-center"
+          >
+            Lihat Galeri
+          </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <section className="bg-white h-fit p-5 flex flex-col gap-4 rounded-xl">
-            <h2 className="font-semibold text-xl">Penilaian dan Ulasan</h2>
-            <div className="w-full text-center flex flex-col gap-2">
-              <h3 className="font-bold text-4xl  text-orange-300">
-                {data.rating}
-              </h3>
-              <StarRatings
-                starDimension="28px"
-                rating={parseFloat(data.rating)}
-                starRatedColor="rgb(253 186 116 / 1)"
-              />
-              <p>{`(2.412 ulasan)`}</p>
+        <section className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="flex flex-col gap-4">
+            <div className="bg-white h-fit p-5 flex flex-col gap-4 rounded-xl">
+              <h2 className="font-semibold text-xl lg:text-2xl">
+                Penilaian dan Ulasan
+              </h2>
+              <div className="w-full text-center flex flex-col gap-2">
+                <h3 className="font-bold text-4xl  text-yellow-400">
+                  {data.rating}
+                </h3>
+                <StarRatings
+                  starDimension="28px"
+                  rating={parseFloat(data.rating)}
+                  starRatedColor="rgb(250 204 21 / 1)"
+                />
+                <p>{`(2.412 ulasan)`}</p>
+              </div>
             </div>
-          </section>
-          <section className="bg-white p-5 flex flex-col gap-4 rounded-xl">
-            <h2 className="font-semibold text-xl">Lokasi Restoran</h2>
+            {reviewsData.map((item) => (
+              <Review {...item} />
+            ))}
+          </div>
+
+          <section className="bg-white p-5 h-fit flex flex-col gap-4 rounded-xl">
+            <h2 className="font-semibold text-xl lg:text-2xl">
+              Lokasi Restoran
+            </h2>
             <div className="w-full flex flex-col gap-4">
               <img
                 src="https://www.wired.com/wp-content/uploads/2016/11/GoogleMapTA.jpg"
@@ -131,7 +157,7 @@ const DetailPage = () => {
                   <Milestone className="w-5" />
                   Direction
                 </button>
-                <button className="w-fit px-3 font-bold flex items-center gap-2 py-1.5 border-2 border-zinc-500 rounded-lg">
+                <button className="w-fit px-3 group hover:text-white duration-300 font-bold flex items-center gap-2 py-1.5 border-2 border-zinc-500 hover:bg-zinc-500 rounded-lg">
                   <Copy className="w-5" />
                   Salin
                 </button>
@@ -152,7 +178,7 @@ const DetailPage = () => {
               </p>
             </div>
           </section>
-        </div>
+        </section>
       </main>
     </div>
   );
