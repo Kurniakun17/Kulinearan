@@ -24,6 +24,7 @@ const DetailPage = () => {
     setData(restaurantData.filter((item) => item.id === parseInt(id))[0]);
   }, [id]);
 
+  
   if (!data) {
     return (
       <div className="grid place-items-center min-h-screen">

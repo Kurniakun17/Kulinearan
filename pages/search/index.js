@@ -31,7 +31,7 @@ const SearchPages = () => {
       <div className="min-h-screen bg-gray-100 grid place-items-center">
         <Navbar />
         <div className="bg-white p-6 px-8 rounded-3xl">
-          <h2 className="font-medium text-2xl">
+          <h2 className="font-medium text-md lg:text-2xl">
             Result for {searchParams.get('data')} on{' '}
             {searchParams.get('location')} not found :{`(`}
           </h2>
@@ -47,7 +47,7 @@ const SearchPages = () => {
         <title>Kulinearan</title>
       </Head>
       <main className="w-full mt-32 mb-16 min-h-screen flex flex-col items-center lg:max-w-[1080px] xl:max-w-[80%] ">
-        <h2 className="font-bold my-4 mb-6 text-4xl">
+        <h2 className="font-bold my-4 mb-6 text-xl lg:text-4xl">
           Result for{' '}
           {searchParams.get('data') === '' ? 'All' : searchParams.get('data')}{' '}
           on {searchParams.get('location')}{' '}
