@@ -33,7 +33,7 @@ const Navbar = () => {
                 <select
                   value={locationValue}
                   onChange={(e) => setLocationValue(e.target.value)}
-                  className="w-20 text-sm lg:text-xl bg-gray-100"
+                  className="w-14 lg:w-20 text-sm lg:text-xl bg-gray-100"
                 >
                   <option value={'Jakarta'} className="text-center">
                     Jakarta
@@ -43,7 +43,7 @@ const Navbar = () => {
                   </option>
                 </select>
               </div>
-              <div className="h-5 bg-zinc-400 w-[1px] mx-4"></div>
+              <div className="h-5 bg-zinc-300 w-[1px] mx-2 lg:mx-4"></div>
               <Search className="w-4 lg:w-8 " />
               <input
                 value={searchValue}
@@ -51,7 +51,7 @@ const Navbar = () => {
                   setSearchValue(e.target.value);
                 }}
                 placeholder="Cari berdasarkan menu atau restoran"
-                className="px-2 bg-gray-100 focus:no-underline focus:outline-none text-sm lg:text-lg w-72 lg:w-96"
+                className="px-2 bg-gray-100 focus:no-underline focus:outline-none text-sm lg:text-lg w-40 sm:w-72 lg:w-96"
               />
             </form>
           </div>
