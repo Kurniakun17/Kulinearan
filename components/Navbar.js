@@ -11,11 +11,11 @@ const Navbar = () => {
   return (
     <div className="bg-white flex z-50 fixed top-0  justify-center w-full">
       <div className="bg-white h-28 py-2 flex items-center justify-center w-full">
-        <div className="w-full lg:max-w-[1080px] xl:max-w-[80%] flex items-center justify-center lg:justify-between">
-          <div className="flex flex-col lg:flex-row items-center gap-2 lg:gap-6 xl:gap-12 py-4">
+        <div className="w-full lg:max-w-[1080px] xl:max-w-[80%] flex items-center px-12 lg:px-0 justify-center lg:justify-between">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-12 lg:gap-6 w-full lg:w-fit xl:gap-12 py-4">
             <Link
               href={'/'}
-              className="text-2xl lg:text-3xl text-red-500 font-bold"
+              className="text-2xl sm:text-3xl text-red-500 font-bold"
             >
               Kulinearan
             </Link>
@@ -26,14 +26,14 @@ const Navbar = () => {
                   `/search?data=${searchValue}&location=${locationValue}`
                 );
               }}
-              className="flex items-center pl-4 py-1 lg:py-4 lg:px-8 rounded-[20px] w-full bg-gray-100 text-zinc-500 "
+              className="flex items-center pl-4 py-1 sm:py-4 sm:px-8 rounded-[20px] w-fit bg-gray-100 text-zinc-500 "
             >
               <div className="flex items-center">
                 <MapPin className="w-4 lg:w-6" />
                 <select
                   value={locationValue}
                   onChange={(e) => setLocationValue(e.target.value)}
-                  className="w-14 lg:w-20 text-sm lg:text-xl bg-gray-100"
+                  className="w-14 sm:w-20 text-sm sm:text-xl bg-gray-100"
                 >
                   <option value={'Jakarta'} className="text-center">
                     Jakarta
@@ -44,14 +44,14 @@ const Navbar = () => {
                 </select>
               </div>
               <div className="h-5 bg-zinc-300 w-[1px] mx-2 lg:mx-4"></div>
-              <Search className="w-4 lg:w-8 " />
+              <Search className="w-4 sm:w-8 " />
               <input
                 value={searchValue}
                 onChange={(e) => {
                   setSearchValue(e.target.value);
                 }}
                 placeholder="Cari berdasarkan menu atau restoran"
-                className="px-2 bg-gray-100 focus:no-underline focus:outline-none text-sm lg:text-lg w-40 sm:w-72 lg:w-96"
+                className="px-2 bg-gray-100 focus:no-underline focus:outline-none text-sm sm:text-lg w-full md:w-72 lg:w-96"
               />
             </form>
           </div>
