@@ -14,6 +14,7 @@ import React, { useEffect, useState } from 'react';
 import StarRatings from 'react-star-ratings';
 import { motion } from 'framer-motion';
 import { Review } from '@/components/Review';
+import Head from 'next/head';
 
 const DetailPage = () => {
   const [data, setData] = useState(null);
@@ -31,9 +32,14 @@ const DetailPage = () => {
     );
   }
 
+  console.log(data.location.split(','));
+
   return (
     <div className="flex flex-col items-center bg-gray-100 min-h-screen ">
       <Navbar />
+      <Head>
+        <title>Kulinearan</title>
+      </Head>
 
       <main className="my-36 w-full lg:max-w-[1080px] px-6 sm:px-16  xl:max-w-[80%] flex flex-col gap-4">
         <h2 className="text-4xl font-bold">{data.name}</h2>
@@ -108,9 +114,15 @@ const DetailPage = () => {
           <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="font-bold text-sm w-full duration-300 h-full bg-white aspect-video rounded-2xl grid place-items-center"
+            className="relative rounded-2xl overflow-hidden group "
           >
-            Lihat Galeri
+            <img
+              src="https://picsum.photos/1080"
+              className="object-cover w-full duration-300 h-full bg-gray-400 aspect-video grid place-items-center"
+            />
+            <div className=" items-center justify-center group-hover:flex group-hover:inset-0 duration-300 absolute bg-black/20">
+              <p className="text-white font-bold">Lihat lebih banyak</p>
+            </div>
           </motion.div>
         </div>
 
@@ -133,8 +145,14 @@ const DetailPage = () => {
               </div>
             </div>
             {reviewsData.map((item) => (
-              <Review {...item} />
+              <Review key={item.name} {...item} />
             ))}
+            <div className="w-full h-12 rounded-lg bg-white flex justify-center items-center">
+              <h4 className="font-semibold">
+                <a className="text-red-500 cursor-pointer">Login</a> to comment on this
+                Restaurant
+              </h4>
+            </div>
           </div>
 
           <section className="bg-white p-5 h-fit flex flex-col gap-4 rounded-xl">
@@ -153,11 +171,24 @@ const DetailPage = () => {
                 {data.location}
               </p>
               <div className="flex gap-2">
-                <button className="w-fit px-3 font-bold text-red-500 hover:text-white hover:bg-red-500 duration-300 flex gap-2 py-1.5 border-2 border-red-500 rounded-lg">
+                <a
+                  target="_blank"
+                  href={`https://www.google.com/maps/search/${data.location
+                    .split(',')
+                    .join('+')}/`}
+                  className="w-fit px-3 font-bold text-red-500 hover:text-white hover:bg-red-500 duration-300 flex gap-2 py-1.5 border-2 border-red-500 rounded-lg"
+                >
                   <Milestone className="w-5" />
                   Direction
-                </button>
-                <button className="w-fit px-3 group hover:text-white duration-300 font-bold flex items-center gap-2 py-1.5 border-2 border-zinc-500 hover:bg-zinc-500 rounded-lg">
+                </a>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(
+                      'thank you for clicking me :)'
+                    );
+                  }}
+                  className="w-fit px-3 group hover:text-white duration-300 font-bold flex items-center gap-2 py-1.5 border-2 border-zinc-500 hover:bg-zinc-500 rounded-lg"
+                >
                   <Copy className="w-5" />
                   Salin
                 </button>

@@ -27,7 +27,7 @@ const HeroSection = () => {
           initial={{ y: -52, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{
-            duration: 2,
+            duration: 1,
             type: 'spring',
             stiffness: 800,
             damping: 200,
@@ -51,7 +51,7 @@ const HeroSection = () => {
             <select
               value={locationValue}
               onChange={(e) => setLocationValue(e.target.value)}
-              className="w-20 text-xl"
+              className="w-20 text-xl bg-white"
             >
               <option value={'Jakarta'} className="text-center">
                 Jakarta
@@ -72,7 +72,7 @@ const HeroSection = () => {
             className="px-2 focus:no-underline focus:outline-none w-full text-xl"
           />
         </form>
-        
+
         <div className="hidden lg:block">
           <motion.div
             initial={{ y: -52, x: 240, opacity: 0 }}

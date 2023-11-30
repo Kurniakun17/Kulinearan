@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import { CardRecommendation } from '@/components/CardRecommendation';
 import { useSearchParams } from 'next/navigation';
+import Head from 'next/head';
 const SearchPages = () => {
   const router = useRouter();
   const { searchValue } = router.query;
@@ -11,8 +12,8 @@ const SearchPages = () => {
   const [searchData, setSearchData] = useState([]);
 
   useEffect(() => {
-    const data = searchParams.get('data');
-    const location = searchParams.get('location');
+    const data = searchParams.get('data') ?? '';
+    const location = searchParams.get('location') ?? '';
 
     setSearchData(() => {
       const tempData = restaurantData.filter((item) =>
@@ -21,8 +22,6 @@ const SearchPages = () => {
       const result = tempData.filter((item) =>
         item.location.toLowerCase().includes(location.toLowerCase())
       );
-      console.log(result);
-      
       return result;
     });
   }, [searchParams]);
@@ -44,9 +43,16 @@ const SearchPages = () => {
   return (
     <div className="flex flex-col items-center bg-gray-100 min-h-screen ">
       <Navbar />
-
-      <main className="w-full mt-32 min-h-screen lg:max-w-[1080px] xl:max-w-[80%] ">
-        <div className="px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-9">
+      <Head>
+        <title>Kulinearan</title>
+      </Head>
+      <main className="w-full mt-32 mb-16 min-h-screen flex flex-col items-center lg:max-w-[1080px] xl:max-w-[80%] ">
+        <h2 className="font-bold my-4 mb-6 text-4xl">
+          Result for{' '}
+          {searchParams.get('data') === '' ? 'All' : searchParams.get('data')}{' '}
+          on {searchParams.get('location')}{' '}
+        </h2>
+        <div className="px-12 grid grid-cols-1 w-full sm:grid-cols-2 lg:grid-cols-3 gap-9">
           {searchData.length === 0 ? (
             <h1>Restaurant not found :{`(`}</h1>
           ) : (

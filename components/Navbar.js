@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { MapPin, Search } from 'lucide-react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 const Navbar = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [searchValue, setSearchValue] = useState('');
   const [locationValue, setLocationValue] = useState('Jakarta');
+
+  useEffect(()=>{})
 
   return (
     <div className="bg-white flex z-50 fixed top-0  justify-center w-full">
@@ -56,13 +60,21 @@ const Navbar = () => {
             </form>
           </div>
           <div className="hidden lg:flex gap-8 items-center">
-            <button className="text-red-500 font-bold text-xl">Login</button>
-            <button className="text-white hover:bg-white border border-white hover:border-red-500 hover:text-red-500 font-bold text-xl py-2 px-4 rounded-2xl bg-red-500">
+            <button
+              onClick={() => {
+                setIsOpenLogin((prev) => !prev);
+              }}
+              className="text-red-500 font-bold text-xl"
+            >
+              Login
+            </button>
+            <button className="text-white duration-300 hover:bg-white border border-white hover:border-red-500 hover:text-red-500 font-bold text-xl py-2 px-4 rounded-2xl bg-red-500">
               Sign Up
             </button>
           </div>
         </div>
       </div>
+
     </div>
   );
 };

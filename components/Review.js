@@ -42,8 +42,14 @@ export const Review = ({
           <h4 className="text-lg mt-1 font-semibold">{title}</h4>
           <p>{body}</p>
           <div className="grid grid-cols-3 gap-2 my-2">
-            <div className="cols-span-1 aspect-square bg-gray-300 rounded-xl"></div>
-            <div className="cols-span-1 bg-gray-300 rounded-xl"></div>
+            <img
+              src="https://images.unsplash.com/photo-1621188988909-fbef0a88dc04?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              className="object-cover cols-span-1 aspect-square bg-gray-300 rounded-xl"
+            ></img>
+            <img
+              src="https://images.unsplash.com/photo-1506354666786-959d6d497f1a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              className="object-cover aspect-square cols-span-1 bg-gray-300 rounded-xl"
+            ></img>
           </div>
         </div>
       </div>
