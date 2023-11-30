@@ -16,6 +16,8 @@ const restaurantData = [
     tags: ['Kopi', 'Indonesia'],
     type: 'Fine Dining',
     open_time: 'Selasa, 10.00 - 22.00',
+    imgSrc:
+      'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 2,
@@ -27,6 +29,8 @@ const restaurantData = [
     tags: ['Korea', 'Makanan Sehat'],
     type: 'Burger',
     open_time: 'Rabu, 08.00 - 21.00',
+    imgSrc:
+      'https://plus.unsplash.com/premium_photo-1670984935550-5ce2e220977a?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 3,
@@ -38,6 +42,8 @@ const restaurantData = [
     tags: ['Bakmi', 'Chinese', 'Cepat Saji'],
     type: 'Fine Dining',
     open_time: 'Senin, 08.00 - 22.00',
+    imgSrc:
+      'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 4,
@@ -49,6 +55,8 @@ const restaurantData = [
     tags: ['GrillHouse', 'Itali'],
     type: 'Burger',
     open_time: 'Kamis, 10.00 - 22.00',
+    imgSrc:
+      'https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 5,
@@ -60,6 +68,8 @@ const restaurantData = [
     tags: ['Western'],
     type: 'Fine Dining',
     open_time: 'Jumat, 10.00 - 23.59',
+    imgSrc:
+      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 6,
@@ -71,6 +81,8 @@ const restaurantData = [
     tags: ['Jawa', 'Indonesia', 'Western'],
     type: 'Fine Dining',
     open_time: 'Minggu, 08.00 - 21.00',
+    imgSrc:
+      'https://plus.unsplash.com/premium_photo-1686090448301-4c453ee74718?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 7,
@@ -82,6 +94,8 @@ const restaurantData = [
     tags: ['Sushi', 'Japanese'],
     type: 'Sushi',
     open_time: 'Selasa, 09.00 - 22.30',
+    imgSrc:
+      'https://plus.unsplash.com/premium_photo-1674004585426-c6ad2adbe4c0?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 8,
@@ -93,6 +107,8 @@ const restaurantData = [
     tags: ['Pizza', 'Italian'],
     type: 'Pizza',
     open_time: 'Rabu, 08.00 - 21.30',
+    imgSrc:
+      'https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 9,
@@ -104,6 +120,8 @@ const restaurantData = [
     tags: ['Sushi', 'Japanese'],
     type: 'Sushi',
     open_time: 'Minggu, 09.00 - 23.00',
+    imgSrc:
+      'https://images.unsplash.com/photo-1578474846511-04ba529f0b88?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 10,
@@ -115,6 +133,8 @@ const restaurantData = [
     tags: ['Sushi', 'Japanese'],
     type: 'Sushi',
     open_time: 'Senin, 08.00 - 21.30',
+    imgSrc:
+      'https://images.unsplash.com/photo-1586999768265-24af89630739?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 11,
@@ -126,6 +146,8 @@ const restaurantData = [
     tags: ['Sushi', 'Japanese'],
     type: 'Sushi',
     open_time: 'Kamis, 11.00 - 23.59',
+    imgSrc:
+      'https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 12,
@@ -136,6 +158,8 @@ const restaurantData = [
     location: 'Depok Town Square',
     tags: ['Street Food', 'Indonesia'],
     type: 'Burger',
+    imgSrc:
+      'https://plus.unsplash.com/premium_photo-1661953124283-76d0a8436b87?q=80&w=1788&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 13,
@@ -147,6 +171,8 @@ const restaurantData = [
     tags: ['Salad', 'Healthy'],
     type: 'Fine Dining',
     open_time: 'Jumat, 09.00 - 22.00',
+    imgSrc:
+      'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 14,
@@ -158,6 +184,8 @@ const restaurantData = [
     tags: ['Ramen', 'Japanese'],
     type: 'Fine Dining',
     open_time: 'Sabtu, 10.00 - 22.00',
+    imgSrc:
+      'https://images.unsplash.com/photo-1587899897387-091ebd01a6b2?q=80&w=1826&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     id: 15,
@@ -169,6 +197,8 @@ const restaurantData = [
     tags: ['Vegetarian', 'Healthy'],
     type: 'Fine Dining',
     open_time: 'Selasa, 09.00 - 22.00',
+    imgSrc:
+      'https://images.unsplash.com/photo-1599458448510-59aecaea4752?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
 ];
 

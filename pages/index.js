@@ -128,13 +128,7 @@ export default function Home() {
                 return (
                   <CardRecommendation
                     key={`${item.name} recommendation key 1`}
-                    id={item.id}
-                    name={item.name}
-                    rating={item.rating}
-                    price={item.avg_price}
-                    distance={item.distance}
-                    location={item.location}
-                    tags={item.tags}
+                    {...item}
                     index={index + 1}
                     tabValue={tabValue}
                   />

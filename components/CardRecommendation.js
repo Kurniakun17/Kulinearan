@@ -6,10 +6,11 @@ export const CardRecommendation = ({
   id,
   name,
   rating,
-  price,
+  avg_price,
   distance,
   location,
   tags,
+  imgSrc,
   index,
   tabValue,
 }) => {
@@ -26,7 +27,7 @@ export const CardRecommendation = ({
       className="flex flex-col rounded-xl overflow-hidden shadow-md hover:cursor-pointer"
     >
       <img
-        src="https://picsum.photos/300"
+        src={imgSrc}
         className="aspect-[16/9] object-cover"
       />
       <div className="py-3 px-4 flex flex-col gap-3 bg-white">
@@ -41,7 +42,7 @@ export const CardRecommendation = ({
           <div className="bg-green-300/30 w-fit p-1 px-1.5 rounded-lg flex items-center justify-center ">
             <DollarSign size={16} className="text-green-500" />
             <p className="text-green-500 text-sm font-semibold">
-              {price} in average
+              {avg_price} in average
             </p>
           </div>
         </div>

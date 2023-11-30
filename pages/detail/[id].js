@@ -32,8 +32,6 @@ const DetailPage = () => {
     );
   }
 
-  console.log(data.location.split(','));
-
   return (
     <div className="flex flex-col items-center bg-gray-100 min-h-screen ">
       <Navbar />
@@ -102,7 +100,7 @@ const DetailPage = () => {
           <motion.img
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            src="https://picsum.photos/1080"
+            src={data.imgSrc}
             className="object-cover w-full duration-300 bg-gray-400 lg:col-span-2 lg:row-span-2 aspect-video rounded-2xl"
           />
           <motion.img
@@ -118,7 +116,7 @@ const DetailPage = () => {
           >
             <img
               src="https://picsum.photos/1080"
-              className="object-cover w-full duration-300 h-full bg-gray-400 aspect-video grid place-items-center"
+              className="object-cover w-full duration-300 bg-gray-400 aspect-video grid place-items-center"
             />
             <div className=" items-center justify-center group-hover:flex group-hover:inset-0 duration-300 absolute bg-black/20">
               <p className="text-white font-bold">Lihat lebih banyak</p>
@@ -143,14 +141,15 @@ const DetailPage = () => {
                 />
                 <p>{`(2.412 ulasan)`}</p>
               </div>
+              {reviewsData.map((item) => (
+                <Review key={item.name} {...item} />
+              ))}
             </div>
-            {reviewsData.map((item) => (
-              <Review key={item.name} {...item} />
-            ))}
+
             <div className="w-full h-12 rounded-lg bg-white flex justify-center items-center">
               <h4 className="font-semibold">
-                <a className="text-red-500 cursor-pointer">Login</a> to comment on this
-                Restaurant
+                <a className="text-red-500 cursor-pointer">Login</a> to comment
+                on this Restaurant
               </h4>
             </div>
           </div>

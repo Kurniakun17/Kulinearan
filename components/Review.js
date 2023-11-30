@@ -1,8 +1,8 @@
-import React from 'react';
+import { ThumbsUp } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import StarRatings from 'react-star-ratings';
-
+import { motion, useAnimate } from 'framer-motion';
 export const Review = ({
-  imgUrl,
   name,
   occupation,
   totalReviews,
@@ -10,8 +10,26 @@ export const Review = ({
   title,
   body,
 }) => {
+  const [isHelpful, setIsHelpful] = useState(false);
+  const [scope, animate] = useAnimate();
+  useEffect(() => {
+    if (isHelpful) {
+      animate(
+        '.helpful',
+        { rotate: [-45, 0] },
+        { type: 'spring', duration: 1, stiffness: 800 }
+      );
+    } else {
+      animate(
+        '.helpful',
+        { rotate: [45, 0] },
+        { type: 'spring', duration: 1, stiffness: 800 }
+      );
+    }
+  }, [isHelpful]);
+
   return (
-    <div className="bg-white h-fit p-5 py-8 flex flex-col gap-4 rounded-xl">
+    <div className="bg-white border-t-2 border-zinc-100 h-fit p-5 py-8 lg:py-12 flex flex-col gap-4">
       <div className="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-2">
         {/* Profile */}
         <div className="flex items-center w-fit flex-col">
@@ -51,6 +69,28 @@ export const Review = ({
               className="object-cover aspect-square cols-span-1 bg-gray-300 rounded-xl"
             ></img>
           </div>
+          <motion.button
+            // whileHover={{ scale: 0.95 }}
+            whileTap={{ scale: 0.85 }}
+            ref={scope}
+            onClick={() => {
+              setIsHelpful((prev) => !prev);
+            }}
+            className={`border my-2 items-center font-bold duration-300 w-fit px-4 py-2 rounded-lg flex  ${
+              isHelpful
+                ? 'text-white bg-red-500 border-red-500'
+                : 'border-zinc-400 text-zinc-400'
+            } gap-2`}
+          >
+            <motion.div
+              variants={{ liked: { rotate: 60 } }}
+              transition={{ type: 'spring' }}
+              className="helpful"
+            >
+              <ThumbsUp size={18} />
+            </motion.div>{' '}
+            Membantu
+          </motion.button>
         </div>
       </div>
     </div>
