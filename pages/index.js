@@ -118,7 +118,7 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            <div className="grid gap-3 gap-y-5 grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 gap-y-5 grid-cols-2 lg:grid-cols-3">
               {Array.from({ length: 6 }).map((_, index) => {
                 if (filteredData.length <= index + offset) {
                   return null;
