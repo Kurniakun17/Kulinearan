@@ -50,7 +50,7 @@ const SearchPages = () => {
         <h2 className="font-bold my-4 mb-6 text-xl lg:text-4xl">
           Result for{' '}
           {searchParams.get('data') === '' ? 'All' : searchParams.get('data')}{' '}
-          on {searchParams.get('location')}{' '}
+          in {searchParams.get('location')}{' '}
         </h2>
         <div className="px-12 grid grid-cols-1 w-full sm:grid-cols-2 lg:grid-cols-3 gap-9">
           {searchData.length === 0 ? (
