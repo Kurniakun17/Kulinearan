@@ -1,16 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapPin, Search } from 'lucide-react';
 import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
+import { motion, useAnimate } from 'framer-motion';
 const HeroSection = () => {
   const [searchValue, setSearchValue] = useState('');
   const [locationValue, setLocationValue] = useState('Jakarta');
+  const [scope, animate] = useAnimate();
+  const [hitCount, setHitCount] = useState(0);
   const router = useRouter();
+  useEffect(() => {
+    if (hitCount > 0)
+      animate(
+        '.logo',
+        {
+          rotate: [
+            hitCount * 15,
+            hitCount * -15,
+            hitCount * 10,
+            hitCount * -10,
+            hitCount * 5,
+            hitCount * -5,
+            hitCount * 3,
+            hitCount * -3,
+            0,
+          ],
+        },
+        { type: 'tween', duration: 1 }
+      );
+  }, [hitCount]);
 
   return (
     <section className="w-full lg:max-w-6xl ">
-      <div className="w-full bg-red-500/90 rounded-b-[48px] flex flex-col gap-12 max-w-[1000px] py-20 px-8 lg:px-28 lg:pr-52">
-        <motion.h1
+      <div
+        ref={scope}
+        className="w-full bg-red-500/90 rounded-b-[48px] flex flex-col gap-12 max-w-[1000px] py-20 px-8 lg:px-28 lg:pr-52"
+      >
+        <motion.button
+          onClick={() => {
+            if (hitCount === 3) {
+              router.replace('/easter-egg')
+            } else {
+              setHitCount((prev) => prev + 1);
+            }
+          }}
           initial={{ x: -52, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{
@@ -19,10 +51,10 @@ const HeroSection = () => {
             stiffness: 800,
             damping: 200,
           }}
-          className="text-3xl font-bold text-white mb-16"
+          className="text-3xl font-bold text-white mb-16 logo w-fit"
         >
           Kulinearan
-        </motion.h1>
+        </motion.button>
         <motion.h1
           initial={{ y: -52, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
