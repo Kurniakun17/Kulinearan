@@ -28,7 +28,7 @@ export const CardRecommendation = ({
     >
       <img
         src={imgSrc}
-        className="aspect-[16/9] object-cover"
+        className="aspect-[16/9] object-cover bg-zinc-400"
       />
       <div className="py-3 px-4 flex flex-col gap-3 bg-white">
         <h4 className="font-semibold text-xl">{name}</h4>
