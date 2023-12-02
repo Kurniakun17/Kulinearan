@@ -27,6 +27,10 @@ const HeroSection = () => {
         },
         { type: 'tween', duration: 1 }
       );
+    if (hitCount === 3)
+      setTimeout(() => {
+        router.replace('/easter-egg');
+      }, [1200]);
   }, [hitCount]);
 
   return (
@@ -37,11 +41,7 @@ const HeroSection = () => {
       >
         <motion.button
           onClick={() => {
-            if (hitCount === 3) {
-              router.replace('/easter-egg')
-            } else {
-              setHitCount((prev) => prev + 1);
-            }
+            setHitCount((prev) => prev + 1);
           }}
           initial={{ x: -52, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
