@@ -36,7 +36,7 @@ const index = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 9, ease: 'easeInOut', type: 'tween' }}
-        className="absolute flex gap-2 px-4 py-2 rounded-xl bg-black h-fit w-fit hover:bg-white duration-500 hover:text-black text-white  -translate-x-1/2 left-1/2 bottom-[20%] sm:top-9 sm:left-9 sm:-translate-x-0 z-[999]"
+        className="absolute flex gap-2 border border-black px-4 py-2 rounded-xl bg-black h-fit w-fit hover:bg-white duration-500 hover:text-black text-white  -translate-x-1/2 left-1/2 bottom-[20%] sm:top-9 sm:left-9 sm:-translate-x-0 z-[999]"
       >
         <ChevronLeft /> Go Back
       </motion.button>
