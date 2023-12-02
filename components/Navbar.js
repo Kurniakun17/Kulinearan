@@ -10,7 +10,13 @@ const Navbar = () => {
   const [searchValue, setSearchValue] = useState('');
   const [locationValue, setLocationValue] = useState('Jakarta');
 
-  useEffect(()=>{})
+  useEffect(() => {
+    console.log(searchParams.get('data'));
+    console.log(searchParams.get('location'));
+    setSearchValue(searchParams.get('data'));
+    setLocationValue(searchParams.get('location'));
+    
+  }, []);
 
   return (
     <div className="bg-white flex z-50 fixed top-0  justify-center w-full">
@@ -74,7 +80,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

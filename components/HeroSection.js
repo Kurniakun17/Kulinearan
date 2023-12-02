@@ -8,6 +8,7 @@ const HeroSection = () => {
   const [scope, animate] = useAnimate();
   const [hitCount, setHitCount] = useState(0);
   const router = useRouter();
+  
   useEffect(() => {
     if (hitCount > 0)
       animate(
