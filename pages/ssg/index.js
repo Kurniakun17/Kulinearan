@@ -1,5 +1,6 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import React, { useState } from 'react';
+import { AnimatePresence, motion, useAnimate } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 export const getStaticProps = async (ctx) => {
   return {
     props: {
@@ -10,6 +11,8 @@ export const getStaticProps = async (ctx) => {
 
 const index = ({ data }) => {
   const [state, setState] = useState(1);
+  const [isActive, setIsActive] = useState(false);
+  const [scope, animate] = useAnimate();
   function getFilter() {
     switch (state) {
       case 1:
@@ -21,8 +24,21 @@ const index = ({ data }) => {
     }
   }
 
+  useEffect(() => {
+    if (isActive) {
+      animate('.dropdown', 'initial');
+    } else {
+      animate('.dropdown', 'active');
+    }
+  }, [isActive]);
+
   return (
-    <div className="h-screen bg-black grid place-items-center relative overflow-hidden">
+    <div
+      ref={scope}
+      className={`h-screen ${
+        state === 1 ? 'bg-white' : 'bg-zinc-800'
+      } duration-300 grid place-items-center relative overflow-hidden`}
+    >
       {/* Propagation */}
       {/* <motion.div
         initial="first"
@@ -38,15 +54,66 @@ const index = ({ data }) => {
       </motion.div> */}
 
       {/* Image */}
-      <AnimatePresence>
         <motion.img
-          key={`${state ? `hero2.svg` : 'hero3.png'}`}
           transition={{ duration: 1, type: 'tween', delay: 1.5 }}
-          className={`filter absolute right-0 ${getFilter()} duration-500 h-[100%]`}
+          className={`filter absolute bottom-0 right-0 ${getFilter()} duration-500 lg:h-[100%]`}
           src={'hero3.png'}
-        />
-      </AnimatePresence>
+        />      
+      {/* Stagger children & propagation  (child must not have initial and animate, but should be an exact name of parents variant) */}
+      {/* <motion.div
+        initial={'initial'}
+        animate={'appear'}
+        // variants={{ appear: { scale: 1 }, initial: { scale: 0 } }}
+        transition={{ staggerChildren: 0.3 }}
+        className="w-[300px] overflow-hidden flex flex-col py-2 px-4 gap-2 rounded-xl bg-zinc-700 "
+      >
+        <motion.div
+          variants={{ initial: { x: -100 }, appear: { x: 0 } }}
+          className="bg-zinc-500 rounded-lg h-6 w-full py-2 flex items-center"
+        >
+          <motion.h1
+            variants={{ initial: { opacity:0 }, appear: { opacity:1, delay: 1 } }}
+            transition={{duration : 2} }
+            className="font-bold ml-1"
+          >
+            Hai
+          </motion.h1>
+        </motion.div>
+        <motion.div
+          variants={{ initial: { x: -100 }, appear: { x: 0 } }}
+          className="bg-zinc-500 rounded-lg h-6 w-full py-2"
+        ></motion.div>
+        <motion.div
+          variants={{ initial: { x: -100 }, appear: { x: 0 } }}
+          className="bg-zinc-500 rounded-lg h-6 w-full py-2"
+        ></motion.div>
+      </motion.div>*/}
 
+      {/* <motion.div
+        variants={{ initial: {}, active: {} }}
+        className="flex flex-col gap-4 .dropdown"
+      >
+        <motion.button
+          onClick={() => {
+            setIsActive((prev) => !prev);
+          }}
+          initial="initial"
+          variants={{ initial: {}, active: {} }}
+          animate="active"
+          className="bg-purple-400 text-white rounded-xl flex justify-between w-[300px] font-bold px-4 py-3"
+        >
+          <h1 className="text-white">Menu</h1>
+          <motion.div
+            variants={{ initial: { rotate: 0 }, active: { rotate: 180 } }}
+          >
+            <ChevronDown />
+          </motion.div>
+        </motion.button>
+        <motion.div className="font-bold rounded-xl px-4 py-3 bg-purple-400">
+          <p>Item 1</p>
+        </motion.div>
+      </motion.div>
+       */}
       <button
         onClick={() => {
           setState((prev) => {
