@@ -37,7 +37,7 @@ const index = ({ data }) => {
       ref={scope}
       className={`h-screen ${
         state === 1 ? 'bg-white' : 'bg-zinc-800'
-      } duration-300 grid place-items-center relative overflow-hidden`}
+      } duration-300 grid place-items-center relative overflow-y-hidden`}
     >
       {/* Propagation */}
       {/* <motion.div
@@ -54,11 +54,11 @@ const index = ({ data }) => {
       </motion.div> */}
 
       {/* Image */}
-        <motion.img
-          transition={{ duration: 1, type: 'tween', delay: 1.5 }}
-          className={`filter absolute bottom-0 right-0 ${getFilter()} duration-500 lg:h-[100%]`}
-          src={'hero3.png'}
-        />      
+      <motion.img
+        transition={{ duration: 1, type: 'tween', delay: 1.5 }}
+        className={`filter absolute bottom-0 right-0 ${getFilter()} lg:translate-x-0 duration-500 h-[100%] object-cover`}
+        src={'hero3.png'}
+      />
       {/* Stagger children & propagation  (child must not have initial and animate, but should be an exact name of parents variant) */}
       {/* <motion.div
         initial={'initial'}
