@@ -6,10 +6,10 @@ export const CardRecommendation = ({
   id,
   name,
   rating,
-  avg_price,
+  avgPrice,
   distance,
   location,
-  tags,
+  categories,
   imgSrc,
   index,
   tabValue,
@@ -18,7 +18,7 @@ export const CardRecommendation = ({
   return (
     <motion.div
       onClick={() => {
-        router.push(`/detail/${id}`);
+        router.push(`/detail/${name}`);
       }}
       key={`${name} recommendation ${tabValue} key`}
       initial={{ scale: 0 }}
@@ -26,10 +26,7 @@ export const CardRecommendation = ({
       transition={{ delay: 0.125 * index, duration: 1, type: 'spring' }}
       className="flex flex-col rounded-xl overflow-hidden shadow-md hover:cursor-pointer"
     >
-      <img
-        src={imgSrc}
-        className="aspect-[16/9] object-cover bg-zinc-400"
-      />
+      <img src={imgSrc} className="aspect-[16/9] object-cover bg-zinc-400" />
       <div className="py-3 px-4 flex flex-col gap-3 bg-white">
         <h4 className="font-semibold text-xl">{name}</h4>
         <div className="flex gap-2">
@@ -42,7 +39,7 @@ export const CardRecommendation = ({
           <div className="bg-green-300/30 w-fit p-1 px-1.5 rounded-lg flex items-center justify-center ">
             <DollarSign size={16} className="text-green-500" />
             <p className="text-green-500 text-sm font-semibold">
-              {avg_price} in average
+              {avgPrice}k in average
             </p>
           </div>
         </div>
@@ -53,7 +50,7 @@ export const CardRecommendation = ({
             <p className="text-zinc-400">{location}</p>
           </div>
           <div className="flex items-center gap-1">
-            {tags.map((item, index) => {
+            {categories.map((item, index) => {
               if (index === 0) {
                 return (
                   <p key={`tag key ${item}`} className="text-zinc-400">

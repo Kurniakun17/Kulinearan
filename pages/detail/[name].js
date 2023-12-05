@@ -15,14 +15,28 @@ import StarRatings from 'react-star-ratings';
 import { motion } from 'framer-motion';
 import { Review } from '@/components/Review';
 import Head from 'next/head';
+import axios from 'axios';
 
 const DetailPage = () => {
   const [data, setData] = useState(null);
   const router = useRouter();
-  const { id } = router.query;
+  const { name } = router.query;
+
   useEffect(() => {
-    setData(restaurantData.filter((item) => item.id === parseInt(id))[0]);
-  }, [id]);
+    if (name) {
+      console.log(name);
+      setData(restaurantData.filter((item) => item.name === name)[0]);
+      (async () => {
+        console.log('run');
+        const result = await axios.get(
+          `http://localhost:3000/api/restaurant/${name}`
+        );
+        setData(result.data.data);
+      })();
+    }
+  }, [name]);
+
+  console.log(data);
 
   if (!data) {
     return (
@@ -31,7 +45,6 @@ const DetailPage = () => {
       </div>
     );
   }
-
   return (
     <div className="flex flex-col items-center bg-gray-100 min-h-screen ">
       <Navbar />
@@ -63,7 +76,7 @@ const DetailPage = () => {
                 <DollarSign size={16} className="text-green-500" />
                 <DollarSign size={16} className="text-green-500" />
               </div>
-              <p className="font-medium">{data.avg_price} / orang</p>
+              <p className="font-medium">{data.avgPrice}k / orang</p>
             </div>
           </div>
 
@@ -73,11 +86,11 @@ const DetailPage = () => {
               <Clock className="text-zinc-500" />
               <p className="text-green-500 font-bold">Buka</p>
               <div className="h-1 w-1 bg-zinc-400 rounded-full"></div>
-              <p>{data.open_time}</p>
+              <p>{data.openTime}</p>
               <div className="hidden lg:block mx-1 h-4 w-[1px] bg-zinc-500"></div>
             </div>
             <div className="flex gap-1.5">
-              {data.tags.map((item, index) => {
+              {data.categories.map((item, index) => {
                 if (index === 0) {
                   return (
                     <p key={`tag key ${item}`} className="text-zinc-400">

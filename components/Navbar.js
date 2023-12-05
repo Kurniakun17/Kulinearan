@@ -11,10 +11,8 @@ const Navbar = () => {
   const [locationValue, setLocationValue] = useState('Jakarta');
 
   useEffect(() => {
-    console.log(searchParams.get('data'));
-    console.log(searchParams.get('location'));
-    setSearchValue(searchParams.get('data'));
-    setLocationValue(searchParams.get('location'));
+    setSearchValue(searchParams.get('data') ?? '');
+    setLocationValue(searchParams.get('location') ?? 'Jakarta');
     
   }, []);
 

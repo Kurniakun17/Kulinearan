@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useQuery } from 'react-query';
-
-import { Navbar } from '@/components/Navbar';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { CardCollection } from '@/components/CardCollection';
 import { CardRecommendation } from '@/components/CardRecommendation';
@@ -10,11 +7,13 @@ import { TabChip } from '@/components/TabChip';
 import { collectionData, restaurantData } from '@/utils/dataDummy';
 import Head from 'next/head';
 import HeroSection from '@/components/HeroSection';
+import { useUserContext } from './_app';
 
 export default function Home() {
   const [tabValue, setTabValue] = useState('Semua');
   const [offset, setOffset] = useState(0);
   const [filteredData, setFilteredData] = useState(restaurantData);
+  const user = useUserContext();
   const { isLoading } = useQuery({
     queryKey: ['mainData'],
     queryFn: async () =>
@@ -43,6 +42,8 @@ export default function Home() {
       </div>
     );
   }
+
+  console.log(user);
 
   return (
     <div className="relative lg:overflow-hidden grid place-items-center">
