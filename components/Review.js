@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react';
 import StarRatings from 'react-star-ratings';
 import { motion, useAnimate } from 'framer-motion';
 export const Review = ({
-  name,
-  occupation,
+  author,
   totalReviews,
   followers,
   title,
@@ -34,16 +33,16 @@ export const Review = ({
         {/* Profile */}
         <div className="flex items-center w-fit flex-col">
           <img
-            src={`https://api.dicebear.com/7.x/lorelei/svg?seed=${name}`}
+            src={`https://api.dicebear.com/7.x/lorelei/svg?seed=${author.username}`}
             className="w-16 h-16 bg-gray-100 rounded-full"
           ></img>
-          <h4 className="font-bold text-lg mt-2">{name}</h4>
-          <p>{occupation}</p>
+          <h4 className="font-bold text-lg mt-2">{author.username}</h4>
+          <p>{author.occupation}</p>
           <div className="flex w-56 justify-center">
-            <p>{totalReviews} Ulasan</p>
+            <p>{author.reviews.length} Ulasan</p>
             <div className="flex gap-1 ml-1 items-center">
               <div className="h-1 w-1 bg-zinc-500 rounded-full"></div>
-              <p className="352 Followers">{followers} Followers</p>
+              <p className="352 Followers">{followers}100 Followers</p>
             </div>
           </div>
         </div>

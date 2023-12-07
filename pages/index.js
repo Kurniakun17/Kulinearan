@@ -8,12 +8,26 @@ import { collectionData, restaurantData } from '@/utils/dataDummy';
 import Head from 'next/head';
 import HeroSection from '@/components/HeroSection';
 import { useUserContext } from './_app';
+import { BASE_URL } from '@/lib/constant';
+export async function getServerSideProps(ctx) {
+  const res = await fetch(`${BASE_URL}/restaurant`).then((result) =>
+    result.json()
+  );
 
-export default function Home() {
+  return {
+    props: {
+      data: res.data,
+    },
+  };
+}
+
+export default function Home({ data }) {
   const [tabValue, setTabValue] = useState('Semua');
   const [offset, setOffset] = useState(0);
-  const [filteredData, setFilteredData] = useState(restaurantData);
-  const user = useUserContext();
+  const [originalData] = useState(data);
+  const [filteredData, setFilteredData] = useState(data);
+  // const user = useUserContext();
+
   const { isLoading } = useQuery({
     queryKey: ['mainData'],
     queryFn: async () =>
@@ -25,12 +39,16 @@ export default function Home() {
   });
 
   useEffect(() => {
+    console.log(originalData);
     setFilteredData(
-      restaurantData.filter((item) => {
+      originalData.filter((item) => {
         if (tabValue === 'Semua') {
           return true;
         }
-        return item.type === tabValue;
+
+        return item.categories
+          .map((item) => item.categoryName)
+          .includes(tabValue);
       })
     );
   }, [tabValue]);
@@ -42,8 +60,6 @@ export default function Home() {
       </div>
     );
   }
-
-  console.log(user);
 
   return (
     <div className="relative lg:overflow-hidden grid place-items-center">

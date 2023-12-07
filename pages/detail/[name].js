@@ -1,5 +1,5 @@
 import Navbar from '@/components/Navbar';
-import { restaurantData, reviewsData } from '@/utils/dataDummy';
+import { reviewsData } from '@/utils/dataDummy';
 import {
   DollarSign,
   Clock,
@@ -9,42 +9,28 @@ import {
   Phone,
   Globe2,
 } from 'lucide-react';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import StarRatings from 'react-star-ratings';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Review } from '@/components/Review';
 import Head from 'next/head';
-import axios from 'axios';
+import { BASE_URL } from '@/lib/constant';
+import StarRatings from 'react-star-ratings';
 
-const DetailPage = () => {
-  const [data, setData] = useState(null);
-  const router = useRouter();
-  const { name } = router.query;
+export const getServerSideProps = async (ctx) => {
+  const res = await fetch(`${BASE_URL}/restaurant/${ctx.params.name}`).then(
+    (data) => data.json()
+  );
 
-  useEffect(() => {
-    if (name) {
-      console.log(name);
-      setData(restaurantData.filter((item) => item.name === name)[0]);
-      (async () => {
-        console.log('run');
-        const result = await axios.get(
-          `http://localhost:3000/api/restaurant/${name}`
-        );
-        setData(result.data.data);
-      })();
-    }
-  }, [name]);
+  return {
+    props: {
+      dataRestaurant: res.data,
+    },
+  };
+};
 
-  console.log(data);
-
-  if (!data) {
-    return (
-      <div className="grid place-items-center min-h-screen">
-        <div className="h-4 w-4 bg-red-500 animate-spin"></div>;
-      </div>
-    );
-  }
+const DetailPage = ({ dataRestaurant }) => {
+  const [data, setData] = useState(dataRestaurant);
+  console.log(data.reviews[0]);
   return (
     <div className="flex flex-col items-center bg-gray-100 min-h-screen ">
       <Navbar />
@@ -67,7 +53,7 @@ const DetailPage = () => {
                 />
               </div>
               <p className="text-yellow-500 text-xl font-bold">{data.rating}</p>
-              <p>{`(2.412 ulasan)`}</p>
+              <p>{`(${data.reviews.length} ulasan)`}</p>
             </div>
             <div className="flex gap-2 items-center">
               <div className="hidden lg:block mx-1 h-4 w-[1px] bg-zinc-500"></div>
@@ -76,7 +62,7 @@ const DetailPage = () => {
                 <DollarSign size={16} className="text-green-500" />
                 <DollarSign size={16} className="text-green-500" />
               </div>
-              <p className="font-medium">{data.avgPrice}k / orang</p>
+              <p className="font-medium">Rp. {data.avgPrice} / orang</p>
             </div>
           </div>
 
@@ -93,18 +79,21 @@ const DetailPage = () => {
               {data.categories.map((item, index) => {
                 if (index === 0) {
                   return (
-                    <p key={`tag key ${item}`} className="text-zinc-400">
-                      {item}
+                    <p
+                      key={`tag key ${item.categoryName}`}
+                      className="text-zinc-400"
+                    >
+                      {item.categoryName}
                     </p>
                   );
                 }
                 return (
                   <div
-                    key={`tag key ${item}`}
+                    key={`tag key ${item.categoryName}`}
                     className="flex gap-1.5 items-center"
                   >
                     <div className="h-1 w-1 bg-zinc-400 rounded-full"></div>
-                    <p className="text-zinc-400">{item}</p>
+                    <p className="text-zinc-400">{item.categoryName}</p>
                   </div>
                 );
               })}
@@ -115,7 +104,7 @@ const DetailPage = () => {
             <motion.img
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              src={data.imgSrc}
+              src={'https://picsum.photos/1080'}
               className="object-cover w-full duration-300 bg-gray-400 lg:col-span-2 lg:row-span-2 aspect-video rounded-2xl"
             />
             <motion.img
@@ -140,8 +129,8 @@ const DetailPage = () => {
           </div>
         </section>
 
-        <section className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="flex flex-col gap-4">
+        <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
+          <div className="flex flex-col gap-4 xl:col-span-2">
             <div className="bg-white h-fit p-6 lg:p-10 flex flex-col gap-4 rounded-xl">
               <h2 className="font-semibold text-2xl lg:text-3xl">
                 Penilaian dan Ulasan
@@ -164,9 +153,9 @@ const DetailPage = () => {
                     starRatedColor="rgb(250 204 21 / 1)"
                   />
                 </div>
-                <p className="lg:text-lg">{`(2.412 ulasan)`}</p>
+                <p className="lg:text-lg">{`(${data.reviews.length} ulasan)`}</p>
               </div>
-              {reviewsData.map((item) => (
+              {data.reviews.map((item) => (
                 <Review key={item.name} {...item} />
               ))}
             </div>

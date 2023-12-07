@@ -74,7 +74,7 @@ const HeroSection = () => {
             e.preventDefault();
 
             router.push(
-              `/search?data=${searchValue}&location=${locationValue}`
+              `/search?name=${searchValue}&location=${locationValue}`
             );
           }}
           className="flex items-center py-6 px-8 rounded-[20px] w-full bg-white text-zinc-500"

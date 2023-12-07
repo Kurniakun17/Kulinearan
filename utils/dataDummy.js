@@ -232,5 +232,4 @@ const reviewsData = [
   },
 ];
 
-export { restaurantData, collectionData, reviewsData
-};
+export { restaurantData, collectionData, reviewsData };

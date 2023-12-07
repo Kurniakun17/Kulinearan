@@ -31,7 +31,7 @@ const Navbar = () => {
               onSubmit={(e) => {
                 e.preventDefault();
                 router.replace(
-                  `/search?data=${searchValue}&location=${locationValue}`
+                  `/search?name=${searchValue}&location=${locationValue}`
                 );
               }}
               className="flex items-center pl-4 py-1 sm:py-4 sm:px-8 rounded-[20px] w-fit bg-gray-100 text-zinc-500 "

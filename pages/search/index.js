@@ -5,26 +5,39 @@ import Navbar from '@/components/Navbar';
 import { CardRecommendation } from '@/components/CardRecommendation';
 import { useSearchParams } from 'next/navigation';
 import Head from 'next/head';
+import axios from 'axios';
+import { BASE_URL } from '@/lib/constant';
 const SearchPages = () => {
-  const router = useRouter();
-  const { searchValue } = router.query;
   const searchParams = useSearchParams();
+  const [isLoading, setIsLoading] = useState(false);
   const [searchData, setSearchData] = useState([]);
 
   useEffect(() => {
-    const data = searchParams.get('data') ?? '';
+    const name = searchParams.get('name') ?? '';
     const location = searchParams.get('location') ?? '';
 
-    setSearchData(() => {
-      const tempData = restaurantData.filter((item) =>
-        item.name.toLowerCase().includes(data.toLowerCase())
-      );
-      const result = tempData.filter((item) =>
-        item.location.toLowerCase().includes(location.toLowerCase())
-      );
-      return result;
-    });
+    (async () => {
+      setIsLoading(true);
+      try {
+        const result = await axios.get(
+          `${BASE_URL}/restaurant?name=${name}&location=${location}`
+        );
+        setSearchData(result.data.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
   }, [searchParams]);
+
+  if (isLoading) {
+    return (
+      <div className="grid place-items-center min-h-screen">
+        <div className="w-4 h-4 bg-red-500 animate-spin"></div>
+      </div>
+    );
+  }
 
   if (searchData.length === 0) {
     return (
@@ -32,8 +45,9 @@ const SearchPages = () => {
         <Navbar />
         <div className="bg-white p-6 px-8 rounded-3xl">
           <h2 className="font-medium text-md lg:text-2xl">
-            Result for {searchParams.get('data')} on{' '}
-            {searchParams.get('location')} not found :{`(`}
+            Result for{' '}
+            {searchParams.get('name') == '' ? 'All' : searchParams.get('name')}{' '}
+            on {searchParams.get('location')} not found :{`(`}
           </h2>
         </div>
       </div>
@@ -47,9 +61,9 @@ const SearchPages = () => {
         <title>Kulinearan</title>
       </Head>
       <main className="w-full mt-32 mb-16 min-h-screen flex flex-col items-center lg:max-w-[1080px] xl:max-w-[80%] ">
-        <h2 className="font-bold my-4 mb-6 text-xl lg:text-4xl">
+        <h2 className="font-bold my-4 mb-6 text-xl sm:text-3xl lg:text-4xl">
           Result for{' '}
-          {searchParams.get('data') === '' ? 'All' : searchParams.get('data')}{' '}
+          {searchParams.get('name') === '' ? 'All' : searchParams.get('data')}{' '}
           in {searchParams.get('location')}{' '}
         </h2>
         <div className="px-12 grid grid-cols-1 w-full sm:grid-cols-2 lg:grid-cols-3 gap-9">

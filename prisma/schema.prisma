@@ -27,7 +27,7 @@ model Reviews {
   reviewId     Int          @id @default(autoincrement())
   title        String
   body         String
-  rating       Float
+  rating       Float @default(0)
   restaurants  Restaurants? @relation(fields: [restaurantId], references: [restaurantId])
   restaurantId Int?
   author       Users?       @relation("reviews", fields: [authorId], references: [userId])
@@ -38,12 +38,12 @@ model Reviews {
 model Users {
   userId       String    @id @default(uuid())
   username     String
+  occupation   String    @default("Food Reviewer")
   reviews      Reviews[] @relation("reviews")
   likedReviews Reviews[] @relation("likedBy")
 }
 
 model Category {
-  categoryId   Int           @id @default(autoincrement())
-  categoryName String
+  categoryName String        @id
   restaurant   Restaurants[]
 }

@@ -26,26 +26,28 @@ export const CardRecommendation = ({
       transition={{ delay: 0.125 * index, duration: 1, type: 'spring' }}
       className="flex flex-col rounded-xl overflow-hidden shadow-md hover:cursor-pointer"
     >
-      <img src={imgSrc} className="aspect-[16/9] object-cover bg-zinc-400" />
+      <img
+        src={'https://picsum.photos/1080/720'}
+        className="aspect-[16/9] object-cover bg-zinc-400"
+      />
       <div className="py-3 px-4 flex flex-col gap-3 bg-white">
         <h4 className="font-semibold text-xl">{name}</h4>
         <div className="flex gap-2">
-          <div className="bg-orange-300/30 w-fit p-1 py-1.5 px-1.5 rounded-lg flex items-center gap-1">
+          <div className="bg-orange-300/30 w-fit p-1 py-1 px-2 rounded-lg flex items-center gap-1">
             <div className="flex p-1 bg-orange-400/70 rounded-full items-center ">
               <Star size={12} color="#fff" />
             </div>
             <p className="text-sm text-orange-400/70 font-bold">{rating}</p>
           </div>
-          <div className="bg-green-300/30 w-fit p-1 px-1.5 rounded-lg flex items-center justify-center ">
-            <DollarSign size={16} className="text-green-500" />
+          <div className="bg-green-300/30 w-fit p-1 px-2 rounded-lg flex items-center justify-center ">
             <p className="text-green-500 text-sm font-semibold">
-              {avgPrice}k in average
+              Rp. {avgPrice/1000}K in average
             </p>
           </div>
         </div>
         <div className="font-medium text-xs flex flex-col">
           <div className="flex items-center gap-1">
-            <p className="text-zinc-400">{distance}</p>
+            <p className="text-zinc-400">3.2km</p>
             <div className="h-[50%] bg-zinc-400 w-[1px]"></div>
             <p className="text-zinc-400">{location}</p>
           </div>
@@ -53,18 +55,21 @@ export const CardRecommendation = ({
             {categories.map((item, index) => {
               if (index === 0) {
                 return (
-                  <p key={`tag key ${item}`} className="text-zinc-400">
-                    {item}
+                  <p
+                    key={`tag key ${item.categoryName}`}
+                    className="text-zinc-400"
+                  >
+                    {item.categoryName}
                   </p>
                 );
               }
               return (
                 <div
-                  key={`tag key ${item}`}
+                  key={`tag key ${item.categoryName}`}
                   className="flex gap-1 items-center"
                 >
                   <div className="h-1 w-1 bg-zinc-400 rounded-full"></div>
-                  <p className="text-zinc-400">{item}</p>
+                  <p className="text-zinc-400">{item.categoryName}</p>
                 </div>
               );
             })}
