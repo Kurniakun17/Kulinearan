@@ -12,7 +12,10 @@ const jakartaSans = Plus_Jakarta_Sans({
 const userContext = createContext({ user: null, setUser: () => {} });
 
 const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({ username: 'Kurnia', userId: 1 });
+  const [user, setUser] = useState({
+    username: 'Kurnia',
+    userId: 'd3329e62-afb1-4c66-a7a3-874504f4b434',
+  });
 
   return (
     <userContext.Provider value={{ user, setUser }}>

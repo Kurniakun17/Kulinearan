@@ -18,6 +18,7 @@ model Restaurants {
   location     String
   openTime     String
   reviews      Reviews[]
+  totalReviews Int        @default(0)
   contact      String
   website      String?
   categories   Category[]
@@ -27,7 +28,7 @@ model Reviews {
   reviewId     Int          @id @default(autoincrement())
   title        String
   body         String
-  rating       Float @default(0)
+  rating       Int          @default(0)
   restaurants  Restaurants? @relation(fields: [restaurantId], references: [restaurantId])
   restaurantId Int?
   author       Users?       @relation("reviews", fields: [authorId], references: [userId])
@@ -40,6 +41,7 @@ model Users {
   username     String
   occupation   String    @default("Food Reviewer")
   reviews      Reviews[] @relation("reviews")
+  totalReviews Int       @default(0)
   likedReviews Reviews[] @relation("likedBy")
 }
 

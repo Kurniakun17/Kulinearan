@@ -7,7 +7,7 @@ import { TabChip } from '@/components/TabChip';
 import { collectionData, restaurantData } from '@/utils/dataDummy';
 import Head from 'next/head';
 import HeroSection from '@/components/HeroSection';
-import { useUserContext } from './_app';
+
 import { BASE_URL } from '@/lib/constant';
 export async function getServerSideProps(ctx) {
   const res = await fetch(`${BASE_URL}/restaurant`).then((result) =>
@@ -26,7 +26,6 @@ export default function Home({ data }) {
   const [offset, setOffset] = useState(0);
   const [originalData] = useState(data);
   const [filteredData, setFilteredData] = useState(data);
-  // const user = useUserContext();
 
   const { isLoading } = useQuery({
     queryKey: ['mainData'],

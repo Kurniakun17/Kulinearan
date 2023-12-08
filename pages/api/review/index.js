@@ -12,6 +12,7 @@ export default async function handler(req, res) {
           restaurantId,
           authorId,
         },
+        include: { author: true },
       });
 
       const restaurantData = await prisma.restaurants.findFirst({
@@ -25,11 +26,16 @@ export default async function handler(req, res) {
       });
 
       avgRating /= restaurantData.reviews.length;
-      avgRating = parseFloat(avgRating.toFixed(1))
+      avgRating = parseFloat(avgRating.toFixed(1));
 
-      const result =  await prisma.restaurants.update({
+      await prisma.users.update({
+        where: { userId: authorId },
+        data: { totalReviews: { increment: 1 } },
+      });
+
+      await prisma.restaurants.update({
         where: { restaurantId },
-        data: { rating: avgRating },
+        data: { rating: avgRating, totalReviews: { increment: 1 } },
       });
 
       res.status(200).json({ data });

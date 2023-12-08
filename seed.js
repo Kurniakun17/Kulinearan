@@ -2,11 +2,40 @@ const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
+async function adjustRating() {
+  Array.from({ length: 16 }).forEach(async (_, index) => {
+    const restaurantData = await prisma.restaurants.findFirst({
+      where: { restaurantId: index + 1 },
+      include: { reviews: true },
+    });
+
+    if (restaurantData.reviews.length > 0) {
+      let avgRating = 0;
+
+      restaurantData.reviews.forEach((item) => {
+        avgRating += item.rating;
+      });
+
+      avgRating /= restaurantData.reviews.length;
+      avgRating = parseFloat(avgRating.toFixed(1));
+
+      await prisma.restaurants.update({
+        where: { restaurantId: index + 1 },
+        data: { rating: avgRating },
+      });
+    } else {
+      await prisma.restaurants.update({
+        where: { restaurantId: index + 1 },
+        data: { rating: 0 },
+      });
+    }
+  });
+}
+
 async function seedRestaurants() {
   const dataRestaurant = [
     {
       name: 'Ramen Ya!',
-      rating: 4.9,
       avgPrice: 30000,
       location: 'Pantai Indah Kapuk, Jakarta',
       openTime: 'Setiap hari, 08.00 - 21.00',
@@ -19,7 +48,6 @@ async function seedRestaurants() {
     },
     {
       name: 'Goobne',
-      rating: 4.4,
       avgPrice: 12000,
       location: 'Pantai Indah Kapuk, Jakarta',
       openTime: 'Rabu, 08.00 - 21.00',
@@ -32,7 +60,6 @@ async function seedRestaurants() {
     },
     {
       name: 'Golden Lamian',
-      rating: 4.2,
       avgPrice: 15000,
       location: 'Senayan City, Senayan, Jakarta',
       contact: '+62895342958390',
@@ -45,7 +72,6 @@ async function seedRestaurants() {
     },
     {
       name: 'Afterhour',
-      rating: 3.7,
       avgPrice: 8000,
       location: 'Sarinah Building, Thamrin, Jakarta',
       contact: '+62895342958390',
@@ -58,7 +84,6 @@ async function seedRestaurants() {
     },
     {
       name: 'Ecology Bistro & Lounge',
-      rating: 4.1,
       avgPrice: 21000,
       location: 'Pantai Indah Kapuk, Jakarta',
       contact: '+62895342958390',
@@ -71,7 +96,6 @@ async function seedRestaurants() {
     },
     {
       name: "Melly's Garden",
-      rating: 4.0,
       avgPrice: 30000,
       location: 'Menteng, Jakarta',
       contact: '+62895342958390',
@@ -84,7 +108,6 @@ async function seedRestaurants() {
     },
     {
       name: 'Sushi Express',
-      rating: 4.5,
       avgPrice: 25000,
       location: 'Gandaria City, Kebayoran Lama, Jakarta',
       contact: '+62895342958390',
@@ -97,7 +120,6 @@ async function seedRestaurants() {
     },
     {
       name: 'Pizza Haven',
-      rating: 4.3,
       avgPrice: 18000,
       location: 'Kemang, Jakarta Selatan',
       contact: '+62895342958390',
@@ -110,7 +132,6 @@ async function seedRestaurants() {
     },
     {
       name: 'Sushi Palace',
-      rating: 4.7,
       avgPrice: 30000,
       location: 'Plaza Senayan, Jakarta',
       contact: '+62895342958390',
@@ -123,7 +144,6 @@ async function seedRestaurants() {
     },
     {
       name: 'Tokyo Sushi Bar',
-      rating: 4.5,
       avgPrice: 25000,
       location: 'Pacific Place, Jakarta',
       contact: '+62895342958390',
@@ -136,7 +156,6 @@ async function seedRestaurants() {
     },
     {
       name: 'Sakura Sushi House',
-      rating: 4.8,
       avgPrice: 35000,
       location: 'Kemang, Jakarta Selatan',
       contact: '+62895342958390',
@@ -149,7 +168,6 @@ async function seedRestaurants() {
     },
     {
       name: 'Burger Tek',
-      rating: 4.8,
       avgPrice: 10000,
       location: 'Depok Town Square',
       openTime: 'Kamis, 11.00 - 22.00',
@@ -162,7 +180,6 @@ async function seedRestaurants() {
     },
     {
       name: 'Healthy Bowls',
-      rating: 4.6,
       avgPrice: 20000,
       location: 'Kuningan City, Jakarta',
       contact: '+62895342958390',
@@ -175,7 +192,6 @@ async function seedRestaurants() {
     },
     {
       name: 'Ramen Delight',
-      rating: 4.2,
       avgPrice: 22000,
       location: 'Plaza Indonesia, Jakarta',
       contact: '+62895342958390',
@@ -188,7 +204,6 @@ async function seedRestaurants() {
     },
     {
       name: 'Veggie Delight',
-      rating: 4.7,
       avgPrice: 15000,
       location: 'Cilandak Town Square, Depok',
       contact: '+62895342958390',
@@ -211,33 +226,76 @@ async function seedRestaurants() {
 async function seedUsers() {
   await prisma.users.createMany({
     data: [
-      { username: 'Kurnia', occupation: 'Influencer' },
-      { username: 'Nia', occupation: 'Food Vlogger' },
-      { username: 'Steven', occupation: 'Hamba Allah' },
+      {
+        userId: 'd3329e62-afb1-4c66-a7a3-874504f4b434',
+        username: 'Kurnia',
+        occupation: 'Influencer',
+      },
+      {
+        userId: '32927d95-8d0e-4ae8-b404-00429482423d',
+        username: 'Nia',
+        occupation: 'Food Vlogger',
+      },
+      {
+        userId: 'a94fb41d-e74b-431a-9cfe-f642a69a60a7',
+        username: 'Steven',
+        occupation: 'Hamba Allah',
+      },
     ],
   });
 }
 
 async function seedReviews() {
-  await prisma.reviews.createMany({
-    data: [
-      {
-        title: 'Pengalaman Kuliner Menggoda',
-        body: 'Restoran ini tidak hanya menyajikan hidangan lezat tetapi juga memberikan pengalaman kuliner yang tak terlupakan. Dengan pelayanan yang ramah dan atmosfer yang menyenangkan, Santap Lezat pantas menjadi pilihan utama bagi para pecinta makanan.',
-        rating: 4.8,
-        authorId: '040e25ff-411d-43cc-ad05-82372fde01c6',
-        restaurantId: 1,
-        reviewId: 1,
-      },
-      {
-        title: 'Kelezatan yang terjaga',
-        body: 'Rasa Sejati selalu berhasil menjaga kualitas makanan mereka. Setiap kunjungan saya dijamin dengan cita rasa yang konsisten dan bahan-bahan berkualitas tinggi. Dari hidangan utama hingga hidangan penutup, semuanya memanjakan lidah.',
-        rating: 4.8,
-        authorId: '14815ceb-ee93-42b2-8a00-8ace7292ccb3',
-        restaurantId: 1,
-        reviewId: 2,
-      },
-    ],
+  const data = [
+    {
+      title: 'Pengalaman Kuliner Menggoda',
+      body: 'Restoran ini tidak hanya menyajikan hidangan lezat tetapi juga memberikan pengalaman kuliner yang tak terlupakan. Dengan pelayanan yang ramah dan atmosfer yang menyenangkan, Santap Lezat pantas menjadi pilihan utama bagi para pecinta makanan.',
+      rating: 4.8,
+      authorId: 'd3329e62-afb1-4c66-a7a3-874504f4b434',
+      restaurantId: 1,
+      reviewId: 1,
+    },
+    {
+      title: 'Kelezatan yang terjaga',
+      body: 'Rasa Sejati selalu berhasil menjaga kualitas makanan mereka. Setiap kunjungan saya dijamin dengan cita rasa yang konsisten dan bahan-bahan berkualitas tinggi. Dari hidangan utama hingga hidangan penutup, semuanya memanjakan lidah.',
+      rating: 4.9,
+      authorId: '32927d95-8d0e-4ae8-b404-00429482423d',
+      restaurantId: 4,
+      reviewId: 2,
+    },
+    {
+      title: 'Pedes banget tapi enak!',
+      body: 'Tidak recommended buat bocil, tapi untuk yang suka pedes sangat sangat recommend!',
+      rating: 4.2,
+      authorId: 'a94fb41d-e74b-431a-9cfe-f642a69a60a7',
+      restaurantId: 3,
+      reviewId: 3,
+    },
+    {
+      title: 'Burgernya juicy parah',
+      body: 'Sizenya gede, rasanya enak, murah lagi... cocok banget buat anak kost',
+      rating: 4.6,
+      authorId: 'a94fb41d-e74b-431a-9cfe-f642a69a60a7',
+      restaurantId: 1,
+      reviewId: 4,
+    },
+    {
+      title: 'Ramen langganan',
+      body: 'Rasanya oriental banget, cocok buat lidah orang indonesia. Comfort foodnya aku dan mbak pacar hihihi',
+      rating: 4.4,
+      authorId: '32927d95-8d0e-4ae8-b404-00429482423d',
+      restaurantId: 2,
+      reviewId: 5,
+    },
+  ];
+
+  data.map(async (item) => {
+    await prisma.reviews.create({ data: item });
+
+    await prisma.users.update({
+      where: { userId: item.authorId },
+      data: { totalReviews: { increment: 1 } },
+    });
   });
 }
 
@@ -255,33 +313,20 @@ async function seedCategory() {
 async function main() {
   seedCategory();
   seedUsers();
-  seedReviews();
   seedRestaurants();
+  seedReviews();
 }
 
-// main()
-//   .then(() => console.log('done'))
-//   .catch((err) => console.log(err));
-
 (async () => {
-  const restaurantData = await prisma.restaurants.findFirst({
-    where: { restaurantId: 3 },
-    include: { reviews: true },
-  });
+  // const data = await prisma.restaurants.findMany({
+  //   include: { reviews: true },
+  // });
 
-  let avgRating = 0;
-  // console.log(restaurantData);
-  restaurantData.reviews.forEach((item) => {
-    avgRating += item.rating;
-  });
-
-  avgRating /= restaurantData.reviews.length;
-  avgRating = parseFloat(avgRating.toFixed(1));
-
-  const res = await prisma.restaurants.update({
-    where: { restaurantId: 3 },
-    data: { rating: avgRating },
-  });
-
-  console.log(res);
+  // data.forEach(async (item) => {
+  //   await prisma.users.update({
+  //     where: { userId: item.userId },
+  //     data: { totalReviews: item.reviews.length },
+  //   });
+  // });
+  adjustRating()
 })();

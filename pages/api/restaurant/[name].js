@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     where: { name: restaurantName },
     include: {
       categories: true,
-      reviews: { include: { author: { include: { reviews: true } } } },
+      reviews: { include: { author: true } },
     },
   });
 

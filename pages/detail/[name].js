@@ -1,5 +1,4 @@
 import Navbar from '@/components/Navbar';
-import { reviewsData } from '@/utils/dataDummy';
 import {
   DollarSign,
   Clock,
@@ -9,12 +8,14 @@ import {
   Phone,
   Globe2,
 } from 'lucide-react';
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Review } from '@/components/Review';
 import Head from 'next/head';
 import { BASE_URL } from '@/lib/constant';
 import StarRatings from 'react-star-ratings';
+import ReviewSection from '@/components/ReviewSection';
+import useDetailData from '@/hooks/useDetailData';
 
 export const getServerSideProps = async (ctx) => {
   const res = await fetch(`${BASE_URL}/restaurant/${ctx.params.name}`).then(
@@ -29,14 +30,16 @@ export const getServerSideProps = async (ctx) => {
 };
 
 const DetailPage = ({ dataRestaurant }) => {
-  const [data, setData] = useState(dataRestaurant);
-  console.log(data.reviews[0]);
+  const [data, onAddReview] = useDetailData(dataRestaurant);
+
+  console.log(data);
+
   return (
-    <div className="flex flex-col items-center bg-gray-100 min-h-screen ">
-      <Navbar />
+    <div className="flex flex-col items-center overflow-hidden bg-gray-100 min-h-screen ">
       <Head>
         <title>Kulinearan</title>
       </Head>
+      <Navbar />
 
       <main className="my-36   w-fit lg:max-w-[1080px] px-6 sm:px-16  xl:max-w-[80%] flex flex-col gap-4">
         <section className="bg-white p-6 lg:p-10 flex flex-col gap-4 w-full rounded-xl">
@@ -53,7 +56,7 @@ const DetailPage = ({ dataRestaurant }) => {
                 />
               </div>
               <p className="text-yellow-500 text-xl font-bold">{data.rating}</p>
-              <p>{`(${data.reviews.length} ulasan)`}</p>
+              <p>{`(${data.totalReviews} ulasan)`}</p>
             </div>
             <div className="flex gap-2 items-center">
               <div className="hidden lg:block mx-1 h-4 w-[1px] bg-zinc-500"></div>
@@ -129,12 +132,10 @@ const DetailPage = ({ dataRestaurant }) => {
           </div>
         </section>
 
-        <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
+        <section className="grid grid-cols-1 overflow-hidden gap-4 lg:grid-cols-2 xl:grid-cols-3">
           <div className="flex flex-col gap-4 xl:col-span-2">
             <div className="bg-white h-fit p-6 lg:p-10 flex flex-col gap-4 rounded-xl">
-              <h2 className="font-semibold text-2xl lg:text-3xl">
-                Penilaian dan Ulasan
-              </h2>
+              <h2 className="font-semibold text-2xl">Penilaian dan Ulasan</h2>
               <div className="w-full my-3 lg:my-6 text-center flex flex-col gap-2">
                 <h3 className="font-bold text-4xl lg:text-5xl text-yellow-400">
                   {data.rating}
@@ -153,25 +154,24 @@ const DetailPage = ({ dataRestaurant }) => {
                     starRatedColor="rgb(250 204 21 / 1)"
                   />
                 </div>
-                <p className="lg:text-lg">{`(${data.reviews.length} ulasan)`}</p>
+                <p className="lg:text-lg">{`(${data.totalReviews} ulasan)`}</p>
               </div>
-              {data.reviews.map((item) => (
-                <Review key={item.name} {...item} />
-              ))}
+              <AnimatePresence>
+                {data.reviews.map((item) => (
+                  <Review key={`review-${item.reviewId}`} {...item} />
+                ))}
+              </AnimatePresence>
             </div>
 
-            <div className="w-full h-12 rounded-lg bg-white flex justify-center items-center">
-              <h4 className="font-semibold">
-                <a className="text-red-500 cursor-pointer">Login</a> to comment
-                on this Restaurant
-              </h4>
-            </div>
+            <ReviewSection
+              restaurantName={data.name}
+              restaurantId={data.restaurantId}
+              onAddReview={onAddReview}
+            />
           </div>
 
           <section className="bg-white p-6 lg:p-10 h-fit flex flex-col gap-4 rounded-xl">
-            <h2 className="font-semibold text-2xl lg:text-3xl">
-              Lokasi Restoran
-            </h2>
+            <h2 className="font-semibold text-2xl">Lokasi Restoran</h2>
             <div className="w-full flex flex-col gap-4">
               <img
                 src="https://www.wired.com/wp-content/uploads/2016/11/GoogleMapTA.jpg"
