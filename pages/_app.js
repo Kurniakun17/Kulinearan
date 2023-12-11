@@ -1,7 +1,9 @@
 import '@/styles/globals.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Plus_Jakarta_Sans } from 'next/font/google';
-import { createContext, useContext, useState } from 'react';
+import { UserProvider } from '@/contexts/userContext';
+import { getServerSession } from 'next-auth';
+import { authConfig } from '@/lib/auth';
 const queryClient = new QueryClient();
 
 const jakartaSans = Plus_Jakarta_Sans({
@@ -9,27 +11,20 @@ const jakartaSans = Plus_Jakarta_Sans({
   weight: ['300', '400', '500', '600', '700'],
 });
 
-const userContext = createContext({ user: null, setUser: () => {} });
+export const getServerSideProps = async (ctx) => {
+  const session = await getServerSession(ctx.req, ctx.res, authConfig);
 
-const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({
-    username: 'Kurnia',
-    userId: 'd3329e62-afb1-4c66-a7a3-874504f4b434',
-  });
-
-  return (
-    <userContext.Provider value={{ user, setUser }}>
-      {children}
-    </userContext.Provider>
-  );
+  return {
+    props: {
+      session,
+    },
+  };
 };
 
-const useUserContext = () => useContext(userContext);
-
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps, session }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <UserProvider>
+      <UserProvider defaultValue={session?.user}>
         <div className={jakartaSans.className}>
           <Component {...pageProps} />
         </div>
@@ -37,5 +32,3 @@ export default function App({ Component, pageProps }) {
     </QueryClientProvider>
   );
 }
-
-export { useUserContext };

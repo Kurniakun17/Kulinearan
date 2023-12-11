@@ -1,5 +1,4 @@
 const { PrismaClient } = require('@prisma/client');
-
 const prisma = new PrismaClient();
 
 async function adjustRating() {
@@ -317,16 +316,16 @@ async function main() {
   seedReviews();
 }
 
-(async () => {
-  // const data = await prisma.restaurants.findMany({
-  //   include: { reviews: true },
-  // });
+// (async () => {
+//   const data = await bcrypt.compare(
+//     'test2',
+//     '$2b$10$6sRNyfapsFb2Cb0JU0kfU.yqQf2JB6DnFXHTVfBSetqufphaDJWgy'
+//   );
+//   console.log(data);
+// })();
 
-  // data.forEach(async (item) => {
-  //   await prisma.users.update({
-  //     where: { userId: item.userId },
-  //     data: { totalReviews: item.reviews.length },
-  //   });
-  // });
-  adjustRating()
-})();
+// const validatePassword = async (password, inputPassword) => {
+//   const result = await bcrypt.compare(password, inputPassword);
+//   return result;
+// };
+// export { validatePassword };

@@ -4,10 +4,9 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { CardCollection } from '@/components/CardCollection';
 import { CardRecommendation } from '@/components/CardRecommendation';
 import { TabChip } from '@/components/TabChip';
-import { collectionData, restaurantData } from '@/utils/dataDummy';
+import { collectionData } from '@/utils/dataDummy';
 import Head from 'next/head';
 import HeroSection from '@/components/HeroSection';
-
 import { BASE_URL } from '@/lib/constant';
 export async function getServerSideProps(ctx) {
   const res = await fetch(`${BASE_URL}/restaurant`).then((result) =>
@@ -26,7 +25,6 @@ export default function Home({ data }) {
   const [offset, setOffset] = useState(0);
   const [originalData] = useState(data);
   const [filteredData, setFilteredData] = useState(data);
-
   const { isLoading } = useQuery({
     queryKey: ['mainData'],
     queryFn: async () =>
@@ -38,7 +36,6 @@ export default function Home({ data }) {
   });
 
   useEffect(() => {
-    console.log(originalData);
     setFilteredData(
       originalData.filter((item) => {
         if (tabValue === 'Semua') {

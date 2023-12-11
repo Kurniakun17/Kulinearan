@@ -7,15 +7,17 @@ import {
   Copy,
   Phone,
   Globe2,
+  ChevronDown,
 } from 'lucide-react';
-import React from 'react';
+import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Review } from '@/components/Review';
+import { Review } from '@/components/detail restaurant/Review';
 import Head from 'next/head';
 import { BASE_URL } from '@/lib/constant';
 import StarRatings from 'react-star-ratings';
-import ReviewSection from '@/components/ReviewSection';
+import ReviewSection from '@/components/detail restaurant/ReviewSection';
 import useDetailData from '@/hooks/useDetailData';
+import StarAndReview from '@/components/detail restaurant/StarAndReview';
 
 export const getServerSideProps = async (ctx) => {
   const res = await fetch(`${BASE_URL}/restaurant/${ctx.params.name}`).then(
@@ -31,8 +33,6 @@ export const getServerSideProps = async (ctx) => {
 
 const DetailPage = ({ dataRestaurant }) => {
   const [data, onAddReview] = useDetailData(dataRestaurant);
-
-  console.log(data);
 
   return (
     <div className="flex flex-col items-center overflow-hidden bg-gray-100 min-h-screen ">
@@ -133,43 +133,8 @@ const DetailPage = ({ dataRestaurant }) => {
         </section>
 
         <section className="grid grid-cols-1 overflow-hidden gap-4 lg:grid-cols-2 xl:grid-cols-3">
-          <div className="flex flex-col gap-4 xl:col-span-2">
-            <div className="bg-white h-fit p-6 lg:p-10 flex flex-col gap-4 rounded-xl">
-              <h2 className="font-semibold text-2xl">Penilaian dan Ulasan</h2>
-              <div className="w-full my-3 lg:my-6 text-center flex flex-col gap-2">
-                <h3 className="font-bold text-4xl lg:text-5xl text-yellow-400">
-                  {data.rating}
-                </h3>
-                <div className="lg:hidden">
-                  <StarRatings
-                    starDimension="28px"
-                    rating={parseFloat(data.rating)}
-                    starRatedColor="rgb(250 204 21 / 1)"
-                  />{' '}
-                </div>
-                <div className="hidden lg:block">
-                  <StarRatings
-                    starDimension="32px"
-                    rating={parseFloat(data.rating)}
-                    starRatedColor="rgb(250 204 21 / 1)"
-                  />
-                </div>
-                <p className="lg:text-lg">{`(${data.totalReviews} ulasan)`}</p>
-              </div>
-              <AnimatePresence>
-                {data.reviews.map((item) => (
-                  <Review key={`review-${item.reviewId}`} {...item} />
-                ))}
-              </AnimatePresence>
-            </div>
 
-            <ReviewSection
-              restaurantName={data.name}
-              restaurantId={data.restaurantId}
-              onAddReview={onAddReview}
-            />
-          </div>
-
+          <StarAndReview {...data} onAddReview={onAddReview} />
           <section className="bg-white p-6 lg:p-10 h-fit flex flex-col gap-4 rounded-xl">
             <h2 className="font-semibold text-2xl">Lokasi Restoran</h2>
             <div className="w-full flex flex-col gap-4">

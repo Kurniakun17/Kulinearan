@@ -1,5 +1,5 @@
 import { adjustNewReview, adjustRating, adjustTotalReview } from '@/lib/function';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const useDetailData = (restaurantData) => {
   const [data, setData] = useState(restaurantData);

@@ -1,5 +1,5 @@
+import useUserContext from '@/hooks/useUserContext';
 import { BASE_URL } from '@/lib/constant';
-import { useUserContext } from '@/pages/_app';
 import axios from 'axios';
 import { checkTargetForNewValues } from 'framer-motion';
 import { MousePointer2, Star } from 'lucide-react';
@@ -12,7 +12,6 @@ const ReviewSection = ({ restaurantName, restaurantId, onAddReview }) => {
   const [rating, setRating] = useState(0);
 
   async function postReview() {
-    console.log('hai');
     const result = await axios.post(`${BASE_URL}/review`, {
       title,
       body,
@@ -20,9 +19,9 @@ const ReviewSection = ({ restaurantName, restaurantId, onAddReview }) => {
       rating,
       restaurantId,
     });
-    
+
     resetInput();
-    
+
     onAddReview(result.data.data);
   }
 
@@ -97,8 +96,8 @@ const ReviewSection = ({ restaurantName, restaurantId, onAddReview }) => {
                 className="border focus:outline-red-500/70 duration-300 h-24 rounded-lg w-full p-2 resize-none"
                 placeholder={`Leave a review for ${restaurantName}`}
               />{' '}
-              <button className="p-1 px-2 w-full font-medium text-sm items-center sm:p-2 gap-2 text-white hover:text-red-500 flex justify-center rounded-lg sm:rounded-xl border border-red-500 group hover:bg-white duration-300 bg-red-500 h-fit ">
-                <MousePointer2 className="w-4 " />
+              <button className="p-1 px-2 w-full font-medium text-sm md:text-lg md:gap-4 items-center sm:p-2 gap-2 text-white hover:text-red-500 flex justify-center rounded-lg sm:rounded-xl border border-red-500 group hover:bg-white duration-300 bg-red-500 h-fit ">
+                <MousePointer2 className="w-4 md:w-6" />
                 Post
               </button>
             </div>

@@ -10,6 +10,7 @@ export const Review = ({
   followers,
   title,
   body,
+  createdAt,
 }) => {
   const [isHelpful, setIsHelpful] = useState(false);
   const [scope, animate] = useAnimate();
@@ -31,13 +32,18 @@ export const Review = ({
   return (
     <motion.div
       key={`motion review ${reviewId}`}
-      initial={{ x: '-100%' }}
-      animate={{ x: 0 }}
-      exit={{ x: '-100%' }}
-      transition={{ duration: 1.2, type: 'spring' }}
-      className="bg-white border-t-2 border-zinc-100 h-fit p-5 py-8 lg:py-12 flex flex-col gap-4"
+      variants={{
+        hidden: { x: '-90%', opacity: 0 },
+        appear: { x: 0, opacity: 1 },
+      }}
+      viewport={{ once: true }}
+      initial="hidden"
+      whileInView="appear"
+      exit="hidden"
+      transition={{ duration: 1, type: 'spring' }}
+      className="bg-white border-t-2 border-zinc-100 h-fit px-2 py-8 lg:py-12 flex flex-col gap-4"
     >
-      <div className="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-2">
+      <div className="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-4">
         {/* Profile */}
         <div className="flex items-center w-fit flex-col">
           <img
@@ -62,7 +68,7 @@ export const Review = ({
               rating={rating}
               starRatedColor="rgb(250 204 21 / 1)"
             />
-            <p>27 Maret 2023</p>
+            <p>{createdAt}</p>
           </div>
           <h4 className="text-lg mt-1 font-semibold">{title}</h4>
           <p>{body}</p>
@@ -82,7 +88,7 @@ export const Review = ({
             onClick={() => {
               setIsHelpful((prev) => !prev);
             }}
-            className={`border my-2 items-center font-bold duration-300 w-fit px-4 py-2 rounded-lg flex  ${
+            className={`border mt-4 items-center font-semibold tracking-wide duration-300 w-fit px-4 py-2 rounded-lg flex  ${
               isHelpful
                 ? 'text-white bg-red-500 border-red-500'
                 : 'border-zinc-400 text-zinc-400'

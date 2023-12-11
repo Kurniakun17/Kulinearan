@@ -4,6 +4,7 @@ export default async function handler(req, res) {
   if (req.method === 'GET') {
     const { name, location } = req.query;
     const data = await prisma.restaurants.findMany({
+      where: { name: { contains: name }, location: { contains: location } },
       include: { categories: true },
     });
 
