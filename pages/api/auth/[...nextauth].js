@@ -1,19 +1,20 @@
-import NextAuth from 'next-auth';
-import bcrypt from 'bcrypt';
-import { prisma } from '@/lib/prisma';
+import NextAuth from "next-auth";
+import bcrypt from "bcryptjs";
+import { prisma } from "@/lib/prisma";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authConfig = {
   providers: [
     CredentialsProvider({
-      name: 'Sign in',
+      name: "Sign in",
       credentials: {
         username: {
-          label: 'Username',
-          type: 'string',
+          label: "Username",
+          type: "string",
         },
         password: {
-          label: 'Password',
-          type: 'password',
+          label: "Password",
+          type: "password",
         },
       },
       async authorize(credentials) {
@@ -41,10 +42,10 @@ export const authConfig = {
         return null;
       },
     }),
-    GoogleProviders({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
+    // GoogleProviders({
+    //   clientId: process.env.GOOGLE_CLIENT_ID,
+    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    // }),
   ],
   callbacks: {
     // It was needed for replacing the default jwt with our own custo, key

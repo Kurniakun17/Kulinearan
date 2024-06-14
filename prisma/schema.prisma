@@ -12,7 +12,7 @@ datasource db {
 model Restaurants {
   restaurantId Int        @id @default(autoincrement())
   name         String
-  rating       Float
+  rating       Float @default(0)
   avgPrice     Float
   location     String
   openTime     String
@@ -26,7 +26,7 @@ model Restaurants {
 model Reviews {
   reviewId     Int          @id @default(autoincrement())
   title        String
-  body         String
+  body         String @db.VarChar(1000)
   rating       Int          @default(0)
   restaurants  Restaurants? @relation(fields: [restaurantId], references: [restaurantId])
   restaurantId Int?

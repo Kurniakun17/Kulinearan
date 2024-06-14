@@ -1,4 +1,4 @@
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 async function adjustRating() {
@@ -34,182 +34,182 @@ async function adjustRating() {
 async function seedRestaurants() {
   const dataRestaurant = [
     {
-      name: 'Ramen Ya!',
+      name: "Ramen Ya!",
       avgPrice: 30000,
-      location: 'Pantai Indah Kapuk, Jakarta',
-      openTime: 'Setiap hari, 08.00 - 21.00',
-      contact: '+62895342958390',
+      location: "Pantai Indah Kapuk, Jakarta",
+      openTime: "Setiap hari, 08.00 - 21.00",
+      contact: "+62895342958390",
       categories: {
         connect: {
-          categoryName: 'Fine Dining',
+          categoryName: "Fine Dining",
         },
       },
     },
     {
-      name: 'Goobne',
+      name: "Goobne",
       avgPrice: 12000,
-      location: 'Pantai Indah Kapuk, Jakarta',
-      openTime: 'Rabu, 08.00 - 21.00',
-      contact: '+62895342958390',
+      location: "Pantai Indah Kapuk, Jakarta",
+      openTime: "Rabu, 08.00 - 21.00",
+      contact: "+62895342958390",
       categories: {
         connect: {
-          categoryName: 'Burger',
+          categoryName: "Burger",
         },
       },
     },
     {
-      name: 'Golden Lamian',
+      name: "Golden Lamian",
       avgPrice: 15000,
-      location: 'Senayan City, Senayan, Jakarta',
-      contact: '+62895342958390',
-      openTime: 'Senin, 08.00 - 22.00',
+      location: "Senayan City, Senayan, Jakarta",
+      contact: "+62895342958390",
+      openTime: "Senin, 08.00 - 22.00",
       categories: {
         connect: {
-          categoryName: 'Fine Dining',
+          categoryName: "Fine Dining",
         },
       },
     },
     {
-      name: 'Afterhour',
+      name: "Afterhour",
       avgPrice: 8000,
-      location: 'Sarinah Building, Thamrin, Jakarta',
-      contact: '+62895342958390',
-      openTime: 'Kamis, 10.00 - 22.00',
+      location: "Sarinah Building, Thamrin, Jakarta",
+      contact: "+62895342958390",
+      openTime: "Kamis, 10.00 - 22.00",
       categories: {
         connect: {
-          categoryName: 'Fine Dining',
+          categoryName: "Fine Dining",
         },
       },
     },
     {
-      name: 'Ecology Bistro & Lounge',
+      name: "Ecology Bistro & Lounge",
       avgPrice: 21000,
-      location: 'Pantai Indah Kapuk, Jakarta',
-      contact: '+62895342958390',
-      openTime: 'Jumat, 10.00 - 23.59',
+      location: "Pantai Indah Kapuk, Jakarta",
+      contact: "+62895342958390",
+      openTime: "Jumat, 10.00 - 23.59",
       categories: {
         connect: {
-          categoryName: 'Burger',
+          categoryName: "Burger",
         },
       },
     },
     {
       name: "Melly's Garden",
       avgPrice: 30000,
-      location: 'Menteng, Jakarta',
-      contact: '+62895342958390',
-      openTime: 'Minggu, 08.00 - 21.00',
+      location: "Menteng, Jakarta",
+      contact: "+62895342958390",
+      openTime: "Minggu, 08.00 - 21.00",
       categories: {
         connect: {
-          categoryName: 'Fine Dining',
+          categoryName: "Fine Dining",
         },
       },
     },
     {
-      name: 'Sushi Express',
+      name: "Sushi Express",
       avgPrice: 25000,
-      location: 'Gandaria City, Kebayoran Lama, Jakarta',
-      contact: '+62895342958390',
-      openTime: 'Selasa, 09.00 - 22.30',
+      location: "Gandaria City, Kebayoran Lama, Jakarta",
+      contact: "+62895342958390",
+      openTime: "Selasa, 09.00 - 22.30",
       categories: {
         connect: {
-          categoryName: 'Sushi',
+          categoryName: "Sushi",
         },
       },
     },
     {
-      name: 'Pizza Haven',
+      name: "Pizza Haven",
       avgPrice: 18000,
-      location: 'Kemang, Jakarta Selatan',
-      contact: '+62895342958390',
-      openTime: 'Rabu, 08.00 - 21.30',
+      location: "Kemang, Jakarta Selatan",
+      contact: "+62895342958390",
+      openTime: "Rabu, 08.00 - 21.30",
       categories: {
         connect: {
-          categoryName: 'Pizza',
+          categoryName: "Pizza",
         },
       },
     },
     {
-      name: 'Sushi Palace',
+      name: "Sushi Palace",
       avgPrice: 30000,
-      location: 'Plaza Senayan, Jakarta',
-      contact: '+62895342958390',
-      openTime: 'Minggu, 09.00 - 23.00',
+      location: "Plaza Senayan, Jakarta",
+      contact: "+62895342958390",
+      openTime: "Minggu, 09.00 - 23.00",
       categories: {
         connect: {
-          categoryName: 'Sushi',
+          categoryName: "Sushi",
         },
       },
     },
     {
-      name: 'Tokyo Sushi Bar',
+      name: "Tokyo Sushi Bar",
       avgPrice: 25000,
-      location: 'Pacific Place, Jakarta',
-      contact: '+62895342958390',
-      openTime: 'Senin, 08.00 - 21.30',
+      location: "Pacific Place, Jakarta",
+      contact: "+62895342958390",
+      openTime: "Senin, 08.00 - 21.30",
       categories: {
         connect: {
-          categoryName: 'Sushi',
+          categoryName: "Sushi",
         },
       },
     },
     {
-      name: 'Sakura Sushi House',
+      name: "Sakura Sushi House",
       avgPrice: 35000,
-      location: 'Kemang, Jakarta Selatan',
-      contact: '+62895342958390',
-      openTime: 'Kamis, 11.00 - 23.59',
+      location: "Kemang, Jakarta Selatan",
+      contact: "+62895342958390",
+      openTime: "Kamis, 11.00 - 23.59",
       categories: {
         connect: {
-          categoryName: 'Sushi',
+          categoryName: "Sushi",
         },
       },
     },
     {
-      name: 'Burger Tek',
+      name: "Burger Tek",
       avgPrice: 10000,
-      location: 'Depok Town Square',
-      openTime: 'Kamis, 11.00 - 22.00',
-      contact: '+62895342958390',
+      location: "Depok Town Square",
+      openTime: "Kamis, 11.00 - 22.00",
+      contact: "+62895342958390",
       categories: {
         connect: {
-          categoryName: 'Burger',
+          categoryName: "Burger",
         },
       },
     },
     {
-      name: 'Healthy Bowls',
+      name: "Healthy Bowls",
       avgPrice: 20000,
-      location: 'Kuningan City, Jakarta',
-      contact: '+62895342958390',
-      openTime: 'Jumat, 09.00 - 22.00',
+      location: "Kuningan City, Jakarta",
+      contact: "+62895342958390",
+      openTime: "Jumat, 09.00 - 22.00",
       categories: {
         connect: {
-          categoryName: 'Fine Dining',
+          categoryName: "Fine Dining",
         },
       },
     },
     {
-      name: 'Ramen Delight',
+      name: "Ramen Delight",
       avgPrice: 22000,
-      location: 'Plaza Indonesia, Jakarta',
-      contact: '+62895342958390',
-      openTime: 'Sabtu, 10.00 - 22.00',
+      location: "Plaza Indonesia, Jakarta",
+      contact: "+62895342958390",
+      openTime: "Sabtu, 10.00 - 22.00",
       categories: {
         connect: {
-          categoryName: 'Fine Dining',
+          categoryName: "Fine Dining",
         },
       },
     },
     {
-      name: 'Veggie Delight',
+      name: "Veggie Delight",
       avgPrice: 15000,
-      location: 'Cilandak Town Square, Depok',
-      contact: '+62895342958390',
-      openTime: 'Selasa, 09.00 - 22.00',
+      location: "Cilandak Town Square, Depok",
+      contact: "+62895342958390",
+      openTime: "Selasa, 09.00 - 22.00",
       categories: {
         connect: {
-          categoryName: 'Burger',
+          categoryName: "Burger",
         },
       },
     },
@@ -226,19 +226,28 @@ async function seedUsers() {
   await prisma.users.createMany({
     data: [
       {
-        userId: 'd3329e62-afb1-4c66-a7a3-874504f4b434',
-        username: 'Kurnia',
-        occupation: 'Influencer',
+        userId: "d3329e62-afb1-4c66-a7a3-874504f4b434",
+        username: "Kurnia",
+        occupation: "Influencer",
+        email: "dummy1@gmail.com",
+        password:
+          "$2b$10$6sRNyfapsFb2Cb0JU0kfU.yqQf2JB6DnFXHTVfBSetqufphaDJWgy",
       },
       {
-        userId: '32927d95-8d0e-4ae8-b404-00429482423d',
-        username: 'Nia',
-        occupation: 'Food Vlogger',
+        userId: "32927d95-8d0e-4ae8-b404-00429482423d",
+        username: "Nia",
+        occupation: "Food Vlogger",
+        email: "dummy2@gmail.com",
+        password:
+          "$2b$10$6sRNyfapsFb2Cb0JU0kfU.yqQf2JB6DnFXHTVfBSetqufphaDJWgy",
       },
       {
-        userId: 'a94fb41d-e74b-431a-9cfe-f642a69a60a7',
-        username: 'Steven',
-        occupation: 'Hamba Allah',
+        userId: "a94fb41d-e74b-431a-9cfe-f642a69a60a7",
+        username: "Steven",
+        occupation: "Hamba Allah",
+        email: "dummy3@gmail.com",
+        password:
+          "$2b$10$6sRNyfapsFb2Cb0JU0kfU.yqQf2JB6DnFXHTVfBSetqufphaDJWgy",
       },
     ],
   });
@@ -247,43 +256,43 @@ async function seedUsers() {
 async function seedReviews() {
   const data = [
     {
-      title: 'Pengalaman Kuliner Menggoda',
-      body: 'Restoran ini tidak hanya menyajikan hidangan lezat tetapi juga memberikan pengalaman kuliner yang tak terlupakan. Dengan pelayanan yang ramah dan atmosfer yang menyenangkan, Santap Lezat pantas menjadi pilihan utama bagi para pecinta makanan.',
+      title: "Pengalaman Kuliner Menggoda",
+      body: "Restoran ini tidak hanya menyajikan hidangan lezat tetapi juga memberikan pengalaman kuliner yang tak terlupakan. Dengan pelayanan yang ramah dan atmosfer yang menyenangkan, Santap Lezat pantas menjadi pilihan utama bagi para pecinta makanan.",
       rating: 4.8,
-      authorId: 'd3329e62-afb1-4c66-a7a3-874504f4b434',
-      restaurantId: 1,
+      authorId: "d3329e62-afb1-4c66-a7a3-874504f4b434",
+      restaurantId: 16,
       reviewId: 1,
     },
     {
-      title: 'Kelezatan yang terjaga',
-      body: 'Rasa Sejati selalu berhasil menjaga kualitas makanan mereka. Setiap kunjungan saya dijamin dengan cita rasa yang konsisten dan bahan-bahan berkualitas tinggi. Dari hidangan utama hingga hidangan penutup, semuanya memanjakan lidah.',
+      title: "Kelezatan yang terjaga",
+      body: "Rasa Sejati selalu berhasil menjaga kualitas makanan mereka. Setiap kunjungan saya dijamin dengan cita rasa yang konsisten dan bahan-bahan berkualitas tinggi. Dari hidangan utama hingga hidangan penutup, semuanya memanjakan lidah.",
       rating: 4.9,
-      authorId: '32927d95-8d0e-4ae8-b404-00429482423d',
-      restaurantId: 4,
+      authorId: "32927d95-8d0e-4ae8-b404-00429482423d",
+      restaurantId: 19,
       reviewId: 2,
     },
     {
-      title: 'Pedes banget tapi enak!',
-      body: 'Tidak recommended buat bocil, tapi untuk yang suka pedes sangat sangat recommend!',
+      title: "Pedes banget tapi enak!",
+      body: "Tidak recommended buat bocil, tapi untuk yang suka pedes sangat sangat recommend!",
       rating: 4.2,
-      authorId: 'a94fb41d-e74b-431a-9cfe-f642a69a60a7',
-      restaurantId: 3,
+      authorId: "a94fb41d-e74b-431a-9cfe-f642a69a60a7",
+      restaurantId: 18,
       reviewId: 3,
     },
     {
-      title: 'Burgernya juicy parah',
-      body: 'Sizenya gede, rasanya enak, murah lagi... cocok banget buat anak kost',
+      title: "Burgernya juicy parah",
+      body: "Sizenya gede, rasanya enak, murah lagi... cocok banget buat anak kost",
       rating: 4.6,
-      authorId: 'a94fb41d-e74b-431a-9cfe-f642a69a60a7',
-      restaurantId: 1,
+      authorId: "a94fb41d-e74b-431a-9cfe-f642a69a60a7",
+      restaurantId: 16,
       reviewId: 4,
     },
     {
-      title: 'Ramen langganan',
-      body: 'Rasanya oriental banget, cocok buat lidah orang indonesia. Comfort foodnya aku dan mbak pacar hihihi',
+      title: "Ramen langganan",
+      body: "Rasanya oriental banget, cocok buat lidah orang indonesia. Comfort foodnya aku dan mbak pacar hihihi",
       rating: 4.4,
-      authorId: '32927d95-8d0e-4ae8-b404-00429482423d',
-      restaurantId: 2,
+      authorId: "32927d95-8d0e-4ae8-b404-00429482423d",
+      restaurantId: 17,
       reviewId: 5,
     },
   ];
@@ -299,22 +308,36 @@ async function seedReviews() {
 }
 
 async function seedCategory() {
-  await prisma.category.createMany({
-    data: [
-      { categoryName: 'Pizza' },
-      { categoryName: 'Sushi' },
-      { categoryName: 'Burger' },
-      { categoryName: 'Fine Dining' },
-    ],
-  });
+  // await prisma.category.createMany({
+  //   data: [
+  //     { categoryName: "Pizza" },
+  //     { categoryName: "Sushi" },
+  //     { categoryName: "Burger" },
+  //     { categoryName: "Fine Dining" },
+  //   ],
+  // });
+
+  const categories = ["Pizza", "Sushi", "Burger", "Fine Dining"];
+
+  for (const categoryName of categories) {
+    const categoryExists = await prisma.category.findUnique({
+      where: { categoryName },
+    });
+
+    if (!categoryExists) {
+      await prisma.category.create({ data: { categoryName } });
+    }
+  }
 }
 
 async function main() {
-  seedCategory();
-  seedUsers();
-  seedRestaurants();
+  // seedCategory();
+  // seedRestaurants();
+  // seedUsers();
   seedReviews();
 }
+
+main();
 
 // (async () => {
 //   const data = await bcrypt.compare(
